@@ -1,7 +1,7 @@
 
 export interface DayData {
     day: number | null
-    schedule: {memo: string}[]
+    schedule: DaySchedule[]
 }
 
 export interface DaySchedule {

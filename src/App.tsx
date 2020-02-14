@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import MonthCalender from './component/MonthCalendar';
-//import data from './data/monthData2.json';
 import data from './data/monthData.json';
 
 const App = () => {

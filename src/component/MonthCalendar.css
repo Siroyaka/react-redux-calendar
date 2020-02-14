@@ -4,13 +4,13 @@
 }
 
 .week > * {
-    width: 80px;
+    width: 120px;
     border-style: solid;
     border-width: 1px;
 }
 
 .week .Day {
-    height: 80px;
+    height: 120px;
 }
 
 .weekdays div {
