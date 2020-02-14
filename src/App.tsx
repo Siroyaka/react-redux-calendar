@@ -1,12 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import MonthCalender from './component/MonthCalendar';
+//import data from './data/monthData2.json';
+import data from './data/monthData.json';
 
 const App = () => {
+  let a = data.data[0];
   return (
     <div>
-      <MonthCalender month={1} maxday={31} weekStart={3}/>
+      <MonthCalender {...a} />
     </div>
   );
 }

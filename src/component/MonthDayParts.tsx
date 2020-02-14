@@ -1,15 +1,12 @@
 import React from 'react';
+import {DayData} from '../datainterface/dayinterface';
 
-interface OwnProps {
-    day: number
-}
+type Props = DayData;
 
-type Props = OwnProps;
-
-const MonthDayParts: React.FC<Props> = (props) => {
+const MonthDayParts: React.FC<Props> = (props: Props) => {
     const {day} = props;
     return(
-        <div className='Day'>{day > 0 ? day : ""}</div>
+        <div className='Day'>{day}</div>
     );
 }
 
