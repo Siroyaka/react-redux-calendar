@@ -1,14 +1,16 @@
 import React from 'react';
 import './App.css';
-import MonthCalender from './component/MonthCalendar';
-import data from './data/monthData.json';
+import CalendarForm from './component/CalendarForm';
+import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
 
 const App = () => {
-  let a = data.data[0];
   return (
-    <div>
-      <MonthCalender {...a} />
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/:id" component={CalendarForm}/>
+        <Redirect exact path="/" to="/2" />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
