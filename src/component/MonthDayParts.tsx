@@ -1,4 +1,8 @@
 import React from 'react';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableBody from '@material-ui/core/TableBody';
+import TypoGraphy from '@material-ui/core/Typography';
 import {DayData} from '../datainterface/dayinterface';
 
 type Props = DayData;
@@ -12,10 +16,10 @@ const MonthDayParts: React.FC<Props> = (props: Props) => {
         schedulecount = <div></div>
     }
     return(
-        <div className='Day'>
-            <div>{day}</div>
-            {schedulecount}
-        </div>
+        <TableCell>
+            <TypoGraphy align='center'>{day}</TypoGraphy>
+            <TableBody>{schedulecount}</TableBody>
+        </TableCell>
     );
 }
 

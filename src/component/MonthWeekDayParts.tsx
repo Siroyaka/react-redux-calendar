@@ -1,13 +1,15 @@
 import React from 'react';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
 
 const MonthWeekDayParts : React.FC = () => {
     const weekDays = ['日', '月', '火', '水', '木', '金', '土'];
     return(
-        <React.Fragment>
+        <TableRow>
             {weekDays.map((wd: string) => (
-                <div className='wd'>{wd}</div>
+                <TableCell>{wd}</TableCell>
             ))}
-        </React.Fragment>
+        </TableRow>
     );
 }
 export default MonthWeekDayParts;

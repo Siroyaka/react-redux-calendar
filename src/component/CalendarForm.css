@@ -1,0 +1,12 @@
+.calendar-split {
+    display: flex;
+    flex-direction: row;
+}
+
+.left-calendar {
+    width: 35%;
+}
+
+.right-calendar {
+    width: 65%;
+}
