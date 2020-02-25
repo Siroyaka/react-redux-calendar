@@ -13,7 +13,10 @@
                         "day": 1,
                         "schedule": [
                             {
-                                "memo": "test1"
+                                "memo": "1月のでーた"
+                            },
+                            {
+                                "memo": "1月のでーた"
                             },
                             {
                                 "memo": "test2"
