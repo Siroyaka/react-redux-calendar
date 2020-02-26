@@ -9,7 +9,7 @@ import createStyles from '@material-ui/core/styles/createStyles';
 import {DayData} from '../datainterface/dayinterface';
 
 
-const styles = (theme:Theme) => createStyles({
+const styles = (theme:Theme) : StyleRules => createStyles({
     cellStyle: {
         borderStyle: 'solid',
         borderWidth: '1px'

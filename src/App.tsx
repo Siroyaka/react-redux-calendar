@@ -7,8 +7,10 @@ const App = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/:id" component={CalendarForm}/>
         <Redirect exact path="/" to="/2" />
+        <Route path='/:id'>
+          <CalendarForm />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
