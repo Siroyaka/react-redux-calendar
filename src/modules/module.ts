@@ -20,6 +20,7 @@ enum ActionTypes {
 }
 
 // ActionCreator
+// 何を引数にしたときにどのアクションを生成するかを定義している
 
 export const pageMove = (num: number) => ({
     type: ActionTypes.PAGEMOVE as ActionTypes.PAGEMOVE,
@@ -30,18 +31,27 @@ export const reload = () => ({
     type: ActionTypes.RELOAD as ActionTypes.RELOAD
 });
 
+// Action
+// MainActionの型はpageMoveの戻り値の型かreloadの戻り値の型であることを示す
 export type MainActions =
     | ReturnType<typeof pageMove>
     | ReturnType<typeof reload>;
 
+// ↑本来はActionの定義(actiontypeとpayloadを持っている型)とActionを生成するActionCreatorを
+// 両方定義する必要があるが、この書き方だとActionCreatorからActionの定義を作成することができる
+
+
+// Reducer
 const reducer: Reducer<AppState, MainActions> = (
     state = initialState,
     action
 ) => {
     switch (action.type) {
         case ActionTypes.PAGEMOVE:
+            console.log('pagemove');
             return {...state, viewMonth: state.viewMonth + action.num };
         case ActionTypes.RELOAD:
+            console.log('reload');
             return {...state};
         default:
             const _: never = action;

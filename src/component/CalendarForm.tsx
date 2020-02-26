@@ -1,10 +1,10 @@
 import React from 'react';
-import {RouteComponentProps, useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import './CalendarForm.css';
 import MonthCalender from './MonthCalendar';
 import data from '../data/monthData.json';
-import {NextSelector, PrevSelector} from './PageSelector';
+import { NextSelector, PrevSelector } from './PageSelector';
 
 interface RouteParams {
     id: string | undefined

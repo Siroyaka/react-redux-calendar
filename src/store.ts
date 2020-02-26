@@ -1,5 +1,11 @@
-import { Action } from 'redux';
-import { AppState, MainActions } from './modules/module';
+import { Action, createStore } from 'redux';
+import MainReducer, { AppState, MainActions } from './modules/module';
+
+const Store = () => {
+    return createStore(MainReducer); 
+}
+
+export default Store();
 
 export type StoreState = {
     reducer: AppState;

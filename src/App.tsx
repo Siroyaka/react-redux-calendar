@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import CalendarForm from './component/CalendarForm';
+import Container from './containers/index';
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
 
 const App = () => {
@@ -9,7 +10,7 @@ const App = () => {
       <Switch>
         <Redirect exact path="/" to="/2" />
         <Route path='/:id'>
-          <CalendarForm />
+          <Container />
         </Route>
       </Switch>
     </BrowserRouter>
