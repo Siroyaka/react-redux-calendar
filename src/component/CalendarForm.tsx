@@ -5,6 +5,7 @@ import './CalendarForm.css';
 import MonthCalender from './MonthCalendar';
 import data from '../data/monthData.json';
 import { NextSelector, PrevSelector } from './PageSelector';
+import { ContainerProps } from '../containers/index';
 
 interface RouteParams {
     id: string | undefined
@@ -20,7 +21,7 @@ const getData = (month: number) => {
     return a;
 }
 
-type props = OwnProps;
+type props = ContainerProps;
 
 const CalendarForm = (props: props) => {
     const {id} = useParams<RouteParams>();
@@ -32,7 +33,7 @@ const CalendarForm = (props: props) => {
             
             <div className='calendar-split'>
                 <div className='left-calendar'>
-                    test
+                    <button onClick={() => props.pageMove(2)}>test</button>
                 </div>
 
                 <div className='right-calendar'>

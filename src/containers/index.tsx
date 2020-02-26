@@ -12,4 +12,8 @@ const mapDispatchToProps = (dispatch: Dispatch<StoreAction>) => (
     bindActionCreators({ pageMove, reload }, dispatch)
 );
 
+export type ContainerProps =
+    ReturnType<typeof mapStateToProps> &
+    ReturnType<typeof mapDispatchToProps>
+
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarForm);
