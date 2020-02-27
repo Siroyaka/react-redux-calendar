@@ -5,15 +5,12 @@ import { pageMove, reload } from '../modules/module';
 import { useSelector, useDispatch } from 'react-redux';
 import CalendarForm from '../component/CalendarForm';
 
-const mapStateToProps = (): StoreState => {
-    const stateSelector = (state:StoreState) => state;
-    const state = useSelector(stateSelector);
+const mapStateToProps = (state: StoreState): StoreState => {
     return({...state});
 } 
 
-const mapDispatchToProps = () => {
-    const udsp = useDispatch<Dispatch<StoreAction>>();
-    return bindActionCreators({ pageMove, reload }, udsp);
+const mapDispatchToProps = (dispatch:Dispatch<StoreAction>) => {
+    return bindActionCreators({ pageMove, reload }, dispatch);
 }
 
 export type ContainerProps =
@@ -21,9 +18,9 @@ export type ContainerProps =
     ReturnType<typeof mapDispatchToProps>;
 
 const Container: React.FC = () => {
-    const state = mapStateToProps();
-    const dispatch = mapDispatchToProps();
-    const containerProps:ContainerProps = {...state, ...dispatch};
+    const state = useSelector(mapStateToProps);
+    const dispatch = useDispatch();
+    const containerProps:ContainerProps = {...state, ...mapDispatchToProps(dispatch)};
     return(
         <CalendarForm {...containerProps} />
     );

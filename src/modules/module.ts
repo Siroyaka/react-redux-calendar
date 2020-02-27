@@ -52,6 +52,7 @@ const reducer: Reducer<AppState, MainActions> = (
         case ActionTypes.RELOAD:
             return {...state};
         default:
+            // eslint-disable-next-line
             const _: never = action;
             return state;
     }

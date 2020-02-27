@@ -7,21 +7,20 @@ import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import withStyles, { WithStyles, StyleRules } from '@material-ui/core/styles/withStyles';
-import createStyles from '@material-ui/core/styles/createStyles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
-const styles = (theme:Theme) : StyleRules => createStyles({
+const useStyles = makeStyles({
     tableStyle: {
         width: '100%',
         tableLayout: 'fixed'
     }
 });
 
-type Props = MonthData & WithStyles<typeof styles>;
+type Props = MonthData;
 
 const MonthCalender: React.FC<Props> = (props) => {
-    const { month, monthDays, classes } = props;
+    const { month, monthDays } = props;
+    const classes = useStyles();
     return (
         <div>
             <Typography variant='h4' align='left'>{month}月</Typography>
@@ -44,4 +43,4 @@ const MonthCalender: React.FC<Props> = (props) => {
     );
 }
 
-export default withStyles(styles)(MonthCalender);
+export default MonthCalender;

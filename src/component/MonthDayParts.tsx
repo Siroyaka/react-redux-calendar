@@ -1,25 +1,21 @@
 import React from 'react';
 import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableBody from '@material-ui/core/TableBody';
 import TypoGraphy from '@material-ui/core/Typography';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import withStyles, { WithStyles, StyleRules } from '@material-ui/core/styles/withStyles';
-import createStyles from '@material-ui/core/styles/createStyles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 import {DayData} from '../datainterface/dayinterface';
 
-
-const styles = (theme:Theme) : StyleRules => createStyles({
+const useStyles = makeStyles({
     cellStyle: {
         borderStyle: 'solid',
         borderWidth: '1px'
     }
 });
 
-type Props = DayData & WithStyles<typeof styles>;
+type Props = DayData;
 
 const MonthDayParts: React.FC<Props> = (props: Props) => {
-    const {day, schedule, classes} = props;
+    const {day, schedule} = props;
+    const classes = useStyles();
     let schedulecount;
     if (schedule.length > 0) {
         schedulecount = <div>Schedule: {schedule.length}</div>
@@ -29,9 +25,9 @@ const MonthDayParts: React.FC<Props> = (props: Props) => {
     return(
         <TableCell className={classes.cellStyle}>
             <TypoGraphy align='center'>{day}</TypoGraphy>
-            <TableBody>{schedulecount}</TableBody>
+            <div>{schedulecount}</div>
         </TableCell>
     );
 }
 
-export default withStyles(styles)(MonthDayParts);
+export default MonthDayParts;

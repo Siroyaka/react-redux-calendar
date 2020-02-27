@@ -1,20 +1,23 @@
 import React from 'react';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import withStyles, { WithStyles, StyleRules } from '@material-ui/core/styles/withStyles';
-import createStyles from '@material-ui/core/styles/createStyles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
-const styles = (theme:Theme) : StyleRules => createStyles({
+const useStyles = makeStyles({
     cellStyle: {
         borderStyle: 'solid',
         borderWidth: '1px'
     }
 });
 
-type Props = WithStyles<typeof styles>;
+interface OwnProps {
 
-const MonthWeekDayParts : React.FC<Props> = ({classes}) => {
+}
+
+type Props = OwnProps;
+
+const MonthWeekDayParts : React.FC<Props> = () => {
+    const classes = useStyles();
     const weekDays = ['日', '月', '火', '水', '木', '金', '土'];
     return(
         <TableRow>
@@ -24,4 +27,5 @@ const MonthWeekDayParts : React.FC<Props> = ({classes}) => {
         </TableRow>
     );
 }
-export default withStyles(styles)(MonthWeekDayParts);
+
+export default MonthWeekDayParts;
