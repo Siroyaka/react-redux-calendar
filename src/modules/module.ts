@@ -14,7 +14,7 @@ const initialState: AppState = {
 }
 
 // ActionTypes
-enum ActionTypes {
+export enum ActionTypes {
     PAGEMOVE = 'PAGEMOVE',
     RELOAD = 'RELOAD'
 }

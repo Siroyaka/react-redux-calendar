@@ -15,7 +15,6 @@ interface OwnProps {
 }
 
 const getData = (month: number, data: MonthData[]) => {
-    console.log(data);
     let a = data.find(d => d.month === month);
     if (a === undefined) return data[0];
     return a;
@@ -25,7 +24,6 @@ type Props = ContainerProps;
 
 const CalendarForm = (props: Props) => {
     const {id} = useParams<RouteParams>();
-    console.log(props.viewMonth);
     const {schedules} = props;
     const urlMonth = parseInt(id);
 

@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import CalendarForm from '../component/CalendarForm';
 
 const mapStateToProps = (state: StoreState) => {
-    console.log("reducer");
-    console.log(state);
     return({...state})
 } 
 
