@@ -1,4 +1,4 @@
-import { Action, Reducer } from "redux";
+import { Reducer } from "redux";
 import { MonthData } from '../datainterface/monthinterface';
 import monthSchedules from '../data/monthData.json';
 
@@ -48,10 +48,8 @@ const reducer: Reducer<AppState, MainActions> = (
 ) => {
     switch (action.type) {
         case ActionTypes.PAGEMOVE:
-            console.log('pagemove');
             return {...state, viewMonth: state.viewMonth + action.num };
         case ActionTypes.RELOAD:
-            console.log('reload');
             return {...state};
         default:
             const _: never = action;

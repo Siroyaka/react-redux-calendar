@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import './CalendarForm.css';
 import MonthCalender from './MonthCalendar';
-import data from '../data/monthData.json';
+import {MonthData} from '../datainterface/monthinterface';
 import { NextSelector, PrevSelector } from './PageSelector';
 import { ContainerProps } from '../containers/index';
 
@@ -14,37 +14,35 @@ interface RouteParams {
 interface OwnProps {
 }
 
-const getData = (month: number) => {
-    console.log(month);
-    let a = data.data.find(d => d.month === month);
-    if (a === undefined) return data.data[0];
+const getData = (month: number, data: MonthData[]) => {
+    console.log(data);
+    let a = data.find(d => d.month === month);
+    if (a === undefined) return data[0];
     return a;
 }
 
-type props = ContainerProps;
+type Props = ContainerProps;
 
-const CalendarForm = (props: props) => {
+const CalendarForm = (props: Props) => {
     const {id} = useParams<RouteParams>();
+    console.log(props.viewMonth);
+    const {schedules} = props;
     const urlMonth = parseInt(id);
 
-    let monthData = getData(urlMonth);
+    let monthData = getData(urlMonth, schedules);
     return (
-        <React.Fragment>
-            
-            <div className='calendar-split'>
-                <div className='left-calendar'>
-                    <button onClick={() => props.pageMove(2)}>test</button>
-                </div>
-
-                <div className='right-calendar'>
-                    <PrevSelector link={urlMonth - 1} />
-                    <NextSelector link={urlMonth + 1} />
-                    <MonthCalender {...monthData} />
-                </div>
-                    
+        <div className='calendar-split'>
+            <div className='left-calendar'>
+                <button onClick={() => props.pageMove(2)}>test</button>
             </div>
 
-        </React.Fragment>
+            <div className='right-calendar'>
+                <PrevSelector link={urlMonth - 1} />
+                <NextSelector link={urlMonth + 1} />
+                <MonthCalender {...monthData} />
+            </div>
+                
+        </div>
     );
 }
 
