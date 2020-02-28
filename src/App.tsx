@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Container from './containers/hooksindex';
+import Overview from './Overview';
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
 
 const App = () => {
@@ -9,7 +9,7 @@ const App = () => {
       <Switch>
         <Redirect exact path="/" to="/2" />
         <Route path='/:id'>
-          <Container />
+          <Overview />
         </Route>
       </Switch>
     </BrowserRouter>

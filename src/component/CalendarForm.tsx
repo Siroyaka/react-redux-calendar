@@ -29,18 +29,11 @@ const CalendarForm = (props: Props) => {
 
     let monthData = getData(urlMonth, schedules);
     return (
-        <div className='calendar-split'>
-            <div className='left-calendar'>
-                <button onClick={() => props.pageMove(2)}>test</button>
-            </div>
-
-            <div className='right-calendar'>
-                <PrevSelector link={urlMonth - 1} />
-                <NextSelector link={urlMonth + 1} />
-                <MonthCalender {...monthData} />
-            </div>
-                
-        </div>
+        <React.Fragment>
+            <PrevSelector link={urlMonth - 1} />
+            <NextSelector link={urlMonth + 1} />
+            <MonthCalender {...monthData} />
+        </React.Fragment>
     );
 }
 
