@@ -1,4 +1,4 @@
-import {MonthData} from '../datainterface/monthinterface';
+import { IMonthFormat } from 'modules/interface/ICalendar';
 declare module '~/monthData.json' {
     interface d {
         data: MonthData
