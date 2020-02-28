@@ -1,8 +1,10 @@
 import React from 'react';
+
 import TableCell from '@material-ui/core/TableCell';
 import TypoGraphy from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import {DayData} from '../datainterface/dayinterface';
+
+import { DayData } from 'modules/interface/ICalendar';
 
 const useStyles = makeStyles({
     cellStyle: {

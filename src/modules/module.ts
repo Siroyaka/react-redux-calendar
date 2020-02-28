@@ -1,10 +1,10 @@
 import { Reducer } from "redux";
-import { MonthData } from '../datainterface/monthinterface';
-import monthSchedules from '../data/monthData.json';
+import { IMonthFormat } from 'modules/interface/ICalendar';
+import monthSchedules from 'data/MonthData.json';
 
 // Initial State
 export interface AppState {
-    readonly schedules: MonthData[];
+    readonly schedules: IMonthFormat[];
     readonly viewMonth: number;
 }
 

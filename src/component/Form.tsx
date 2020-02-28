@@ -1,10 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import './CalendarForm.css';
-import MonthCalender from './MonthCalendar';
-import {MonthData} from '../datainterface/monthinterface';
-import { NextSelector, PrevSelector } from './PageSelector';
+import 'component/CalendarForm.css';
+import MonthCalender from 'component/month/Calendar';
+import { IMonthFormat } from 'modules/interface/ICalendar';
 import { ContainerProps } from '../containers/index';
 
 interface RouteParams {
@@ -14,7 +13,7 @@ interface RouteParams {
 interface OwnProps {
 }
 
-const getData = (month: number, data: MonthData[]) => {
+const getData = (month: number, data: IMonthFormat[]) => {
     let a = data.find(d => d.month === month);
     if (a === undefined) return data[0];
     return a;
@@ -29,11 +28,7 @@ const CalendarForm = (props: Props) => {
 
     let monthData = getData(urlMonth, schedules);
     return (
-        <React.Fragment>
-            <PrevSelector link={urlMonth - 1} />
-            <NextSelector link={urlMonth + 1} />
-            <MonthCalender {...monthData} />
-        </React.Fragment>
+        <MonthCalender {...monthData} />
     );
 }
 

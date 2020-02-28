@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Header from './component/Header';
-import LeftContainer from './containers/LeftContainer';
-import RightContainer from './containers/hooksindex';
+import Header from 'component/header/Header';
+import LeftContainer from 'containers/LeftContainer';
+import RightContainer from 'containers/RightContainer';
 import './Overview.css';
 
 const Overview : React.FC = () => {
