@@ -1,9 +1,10 @@
 import React from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
-import { StoreState, StoreAction } from '../Store';
-import { pageMove, reload } from '../modules/Module';
 import { useSelector, useDispatch } from 'react-redux';
+
 import CalendarForm from 'component/Form';
+import { StoreState, StoreAction } from 'Store';
+import { pageMove, reload } from 'modules/Module';
 
 const mapStateToProps = (state: StoreState): StoreState => {
     return({...state});

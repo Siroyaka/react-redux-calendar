@@ -1,16 +1,12 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import 'component/CalendarForm.css';
 import MonthCalender from 'component/month/Calendar';
 import { IMonthFormat } from 'modules/interface/ICalendar';
-import { ContainerProps } from '../containers/index';
+import { ContainerProps } from 'containers/RightContainer';
 
 interface RouteParams {
     id: string | undefined
-}
-
-interface OwnProps {
 }
 
 const getData = (month: number, data: IMonthFormat[]) => {

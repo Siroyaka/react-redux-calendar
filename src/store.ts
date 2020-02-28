@@ -1,5 +1,5 @@
 import { Action, createStore } from 'redux';
-import MainReducer, { AppState, MainActions } from 'modules/module';
+import MainReducer, { AppState, MainActions } from 'modules/Module';
 
 const Store = createStore(MainReducer); 
 

@@ -4,7 +4,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TypoGraphy from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
-import { DayData } from 'modules/interface/ICalendar';
+import { IDayFormat } from 'modules/interface/ICalendar';
 
 const useStyles = makeStyles({
     cellStyle: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     }
 });
 
-type Props = DayData;
+type Props = IDayFormat;
 
 const MonthDayParts: React.FC<Props> = (props: Props) => {
     const {day, schedule} = props;
