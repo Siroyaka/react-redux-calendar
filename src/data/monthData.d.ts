@@ -1,5 +1,5 @@
 import { IMonthFormat } from 'modules/interface/ICalendar';
-declare module '~/monthData.json' {
+declare module '~/MonthData.json' {
     interface d {
         data: MonthData
     }

@@ -2,7 +2,7 @@
     "data": [
         {
             "month": 1,
-            "monthDays": [
+            "days": [
                 [
                     {
                         "day": null,
@@ -381,7 +381,7 @@
         },
         {
             "month": 2,
-            "monthDays": [
+            "days": [
                 [
                     {
                         "day": 1,
@@ -522,7 +522,7 @@
         },
         {
             "month": 3,
-            "monthDays": [
+            "days": [
                 [
                     {
                         "day": null,

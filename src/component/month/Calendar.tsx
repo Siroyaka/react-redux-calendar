@@ -4,7 +4,6 @@ import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
-import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 import MonthDayParts from 'component/month/DayParts';
@@ -21,17 +20,16 @@ const useStyles = makeStyles({
 type Props = IMonthFormat;
 
 const MonthCalender: React.FC<Props> = (props) => {
-    const { month, day } = props;
+    const { days } = props;
     const classes = useStyles();
     return (
         <div>
-            <Typography variant='h4' align='left'>{month}月</Typography>
             <Table className={classes.tableStyle}>
                 <TableHead>
                     <MonthWeekDayParts />
                 </TableHead>
                 <TableBody>
-                    {day.map((week) => (
+                    {days.map((week) => (
                         <TableRow>
                             {week.map((dayData) => (
                                 <MonthDayParts {...dayData}/>

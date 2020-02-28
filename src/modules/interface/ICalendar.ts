@@ -1,6 +1,6 @@
 export interface IMonthFormat {
     month: number
-    day: IDayFormat[][]
+    days: IDayFormat[][]
 }
 
 export interface IDayFormat {
