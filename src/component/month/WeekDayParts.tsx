@@ -1,5 +1,7 @@
 import React from 'react';
+
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import Card from '@material-ui/core/Card';
 
 const useStyles = makeStyles({
     rowStyle: {
@@ -10,7 +12,7 @@ const useStyles = makeStyles({
     },
     cellStyle: {
         textAlign: 'center',
-        width: '100%'
+        flexBasis: '100%'
     }
 });
 
@@ -26,7 +28,7 @@ const MonthWeekDayParts : React.FC<Props> = () => {
     return(
         <div className={classes.rowStyle}>
             {weekDays.map((wd: string) => (
-                <div className={classes.cellStyle}>{wd}</div>
+                <Card className={classes.cellStyle}>{wd}</Card>
             ))}
         </div>
     );

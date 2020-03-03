@@ -28,11 +28,13 @@ const Header: React.FC<Props> = (props) => {
     const {id} = useParams<{id: string|undefined}>();
     const m = parseInt(id);
     const classes = useStyle();
+    const prev = m - 1 < 1 ? 12 : m - 1;
+    const next = m + 1 > 12 ? 1 : m + 1;
 
     return(
         <div className={classes.divStyle}>
-            <PrevSelector link={m-1} />
-            <NextSelector link={m+1} />
+            <PrevSelector link={prev} />
+            <NextSelector link={next} />
             <Typography className={classes.monthViews}>{id}月</Typography>
         </div>
     );

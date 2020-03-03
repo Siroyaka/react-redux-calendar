@@ -1,16 +1,14 @@
 import React from 'react';
 
-import TableCell from '@material-ui/core/TableCell';
 import TypoGraphy from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import Card from '@material-ui/core/Card';
 
 import { IDayFormat } from 'modules/interface/ICalendar';
 
 const useStyles = makeStyles({
     cellStyle: {
         flexBasis: '100%',
-        borderStyle: 'solid',
-        borderWidth: '1px'
     }
 });
 
@@ -26,10 +24,10 @@ const MonthDayParts: React.FC<Props> = (props: Props) => {
         schedulecount = <div></div>
     }
     return(
-        <TableCell className={classes.cellStyle}>
+        <Card className={classes.cellStyle}>
             <TypoGraphy align='center'>{day}</TypoGraphy>
             <div>{schedulecount}</div>
-        </TableCell>
+        </Card>
     );
 }
 

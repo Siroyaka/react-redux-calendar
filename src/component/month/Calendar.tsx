@@ -12,8 +12,6 @@ const useStyles = makeStyles({
         flexDirection: 'column',
         flexBasis: 'auto',
         width: '100%',
-        borderStyle: 'solid',
-        borderWidth: '1px'
     }
 });
 
