@@ -8,8 +8,7 @@ import { IDayFormat } from 'modules/interface/ICalendar';
 
 const useStyles = makeStyles({
     cellStyle: {
-        width: '100%',
-        height: '100%',
+        flexBasis: '100%',
         borderStyle: 'solid',
         borderWidth: '1px'
     }

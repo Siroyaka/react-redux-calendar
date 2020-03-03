@@ -3,15 +3,16 @@ import DayParts from 'component/month/DayParts';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles({
-    calendarStyel: {
+    calendarStyle: {
         display: 'flex',
         flexDirection: 'column',
+        flexBasis: '100%',
         justifyContent: 'space-between'
     },
     rowStyle: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        flexBasis: '100%',
     }
 });
 
@@ -54,7 +55,7 @@ const Days: React.FC<Props> = (props) => {
     }
 
     return(
-        <div>
+        <div className={classes.calendarStyle}>
             {t.map((week) => (
                 <div className={classes.rowStyle}>
                     {week}
