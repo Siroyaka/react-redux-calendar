@@ -11,8 +11,8 @@ interface RouteParams {
 
 const getData = (month: number, data: IMonthFormat[]) => {
     let a = data.find(d => d.month === month);
-    if (a === undefined) return data[0];
-    return a;
+    if (a === undefined) a = data[0];
+    return {...a, month: month};
 }
 
 type Props = ContainerProps;

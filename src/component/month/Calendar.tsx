@@ -1,13 +1,11 @@
 import React from 'react';
 
 import Table from '@material-ui/core/Table';
-import TableHead from '@material-ui/core/TableHead';
-import TableBody from '@material-ui/core/TableBody';
-import TableRow from '@material-ui/core/TableRow';
+import {TableHead, TableBody} from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
-import MonthDayParts from 'component/month/DayParts';
 import MonthWeekDayParts from 'component/month/WeekDayParts';
+import Days from 'component/month/Days';
 import { IMonthFormat } from 'modules/interface/ICalendar';
 
 const useStyles = makeStyles({
@@ -20,7 +18,7 @@ const useStyles = makeStyles({
 type Props = IMonthFormat;
 
 const MonthCalender: React.FC<Props> = (props) => {
-    const { days } = props;
+    const { month } = props;
     const classes = useStyles();
     return (
         <div>
@@ -29,17 +27,10 @@ const MonthCalender: React.FC<Props> = (props) => {
                     <MonthWeekDayParts />
                 </TableHead>
                 <TableBody>
-                    {days.map((week) => (
-                        <TableRow>
-                            {week.map((dayData) => (
-                                <MonthDayParts {...dayData}/>
-                            ))}
-                        </TableRow>
-                    ))}
+                    <Days year={2020} month={month}/>
                 </TableBody>
             </Table>
         </div>
-
     );
 }
 
