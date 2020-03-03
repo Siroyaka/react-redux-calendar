@@ -1,8 +1,10 @@
 import React from 'react';
 
+import LeftComponent from 'component/lefts/LeftComponent';
+
 const LeftContainer : React.FC = () => {
     return(
-        <h1>left container</h1>
+        <LeftComponent />
     );
 }
 
