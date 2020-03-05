@@ -10,8 +10,6 @@ const useStyles = makeStyles({
     calendarStyle: {
         display: 'flex',
         flexDirection: 'column',
-        flexBasis: 'auto',
-        width: '100%',
     }
 });
 

@@ -6,17 +6,20 @@ import monthSchedules from 'data/MonthData.json';
 export interface AppState {
     readonly schedules: IMonthFormat[];
     readonly viewMonth: number;
+    readonly viewLeftMenu: boolean;
 }
 
 const initialState: AppState = {
     schedules: monthSchedules.data,
-    viewMonth: 2
+    viewMonth: 2,
+    viewLeftMenu: true
 }
 
 // ActionTypes
 export enum ActionTypes {
     PAGEMOVE = 'PAGEMOVE',
-    RELOAD = 'RELOAD'
+    RELOAD = 'RELOAD',
+    CHANGEVIEWINGLEFTMENU = 'CHANGEVIEWINGLEFTMENU',
 }
 
 // ActionCreator
@@ -31,11 +34,16 @@ export const reload = () => ({
     type: ActionTypes.RELOAD as ActionTypes.RELOAD
 });
 
+export const changeViewingLeftMenu = () => ({
+    type: ActionTypes.CHANGEVIEWINGLEFTMENU as ActionTypes.CHANGEVIEWINGLEFTMENU
+})
+
 // Action
 // MainActionの型はpageMoveの戻り値の型かreloadの戻り値の型であることを示す
 export type MainActions =
     | ReturnType<typeof pageMove>
-    | ReturnType<typeof reload>;
+    | ReturnType<typeof reload>
+    | ReturnType<typeof changeViewingLeftMenu>;
 
 // ↑本来はActionの定義(actiontypeとpayloadを持っている型)とActionを生成するActionCreatorを
 // 両方定義する必要があるが、この書き方だとActionCreatorからActionの定義を作成することができる
@@ -48,9 +56,12 @@ const reducer: Reducer<AppState, MainActions> = (
 ) => {
     switch (action.type) {
         case ActionTypes.PAGEMOVE:
-            return {...state, viewMonth: state.viewMonth + action.num };
+            return { ...state, viewMonth: state.viewMonth + action.num };
         case ActionTypes.RELOAD:
-            return {...state};
+            return { ...state };
+        case ActionTypes.CHANGEVIEWINGLEFTMENU:
+            const viewing = !state.viewLeftMenu;
+            return { ...state, viewLeftMenu:viewing };
         default:
             // eslint-disable-next-line
             const _: never = action;

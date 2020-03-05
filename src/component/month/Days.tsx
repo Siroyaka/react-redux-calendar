@@ -6,13 +6,11 @@ const useStyles = makeStyles({
     calendarStyle: {
         display: 'flex',
         flexDirection: 'column',
-        flexBasis: '100%',
         justifyContent: 'space-between'
     },
     rowStyle: {
         display: 'flex',
         flexDirection: 'row',
-        flexBasis: '100%',
     }
 });
 

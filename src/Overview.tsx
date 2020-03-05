@@ -3,41 +3,45 @@ import React from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Drawer from '@material-ui/core/Drawer';
 
-import Header from 'component/header/Header';
 import LeftContainer from 'containers/LeftContainer';
 import RightContainer from 'containers/RightContainer';
 import './Overview.css';
 
 const useStyles = makeStyles({
-    viewStyle: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        width: '100%'
-    },
-    headerStyle: {
-        flexBasis: '10%'
-    },
     bodyStyle: {
-        display: 'flex',
-        flexBasis: 'auto',
-        flexDirection: 'row',
-        height: '100%',
-        width: '100%'
+        paddingTop: '70px',
+        boxSizing: 'border-box',
+        display: 'flex'
+    },
+    drawerStyle: {
+        width: '20%',
+        flexShrink: 0
+    },
+    paper: {
+        width: '20%',
+        paddingTop: '70px',
+        boxSizing: 'border-box'
+    },
+    rightStyle: {
+        paddingLeft: '5px'
     }
 });
 
 const Overview : React.FC = () => {
     const classes = useStyles();
     return(
-        <div className={classes.viewStyle}>
-            <div className={classes.bodyStyle}>
-                <Drawer
-                    open={true}
-                    >
-
-                    <LeftContainer />
-                </Drawer>
+        <div className={classes.bodyStyle}>
+            <Drawer 
+                className={classes.drawerStyle}
+                open={true}
+                variant="permanent"
+                classes={{
+                    paper: classes.paper
+                }}
+                >
+                <LeftContainer />
+            </Drawer>
+            <div className={classes.rightStyle}>
                 <RightContainer />
             </div>
         </div>
