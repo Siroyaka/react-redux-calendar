@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
@@ -9,6 +9,8 @@ import ToolBar from '@material-ui/core/Toolbar';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 
 import { NextSelector, PrevSelector } from 'component/pub/PageSelector';
+import { useDispatch } from 'react-redux';
+import { ActionTypes } from 'modules/Module';
 
 interface OwnProps {
 }
@@ -33,6 +35,11 @@ const useStyle = makeStyles((theme) => ({
 
 const Header: React.FC<Props> = (props) => {
     const {id} = useParams<{id: string|undefined}>();
+    const dispatch = useDispatch();
+    const changeViewingAction = useCallback(
+        () => dispatch({type: ActionTypes.CHANGEVIEWINGLEFTMENU}),
+        [dispatch]
+    );
     const m = parseInt(id);
     const theme = useTheme();
     const classes = useStyle(theme);
@@ -42,7 +49,7 @@ const Header: React.FC<Props> = (props) => {
     return(
         <AppBar className={classes.appBarStyle}>
             <ToolBar>
-                <DehazeIcon onClick={}/>
+                <DehazeIcon onClick={changeViewingAction}/>
                 <PrevSelector link={prev} />
                 <NextSelector link={next} />
                 <Typography className={classes.monthViews}>{id}月</Typography>
