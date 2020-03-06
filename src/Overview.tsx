@@ -2,6 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import useTheme from '@material-ui/core/styles/useTheme';
 import Drawer from '@material-ui/core/Drawer';
 
 import LeftContainer from 'containers/LeftContainer';
@@ -12,7 +13,7 @@ import { StoreState } from 'Store';
 
 const drawerWidth = 256;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     bodyStyle: {
         paddingTop: '70px',
         boxSizing: 'border-box',
@@ -29,18 +30,26 @@ const useStyles = makeStyles({
     },
     rightStyle: {
         marginLeft: -drawerWidth,
-        paddingLeft: '5px'
+        paddingLeft: '5px',
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.easeIn,
+            duration: theme.transitions.duration.leavingScreen
+        })
     },
     rightStyleShift: {
         marginLeft: 0,
-        paddingLeft: '5px'
+        paddingLeft: '5px',
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen
+        }),
     }
-});
+}));
 
 const Overview : React.FC = () => {
-    const classes = useStyles();
+    const theme = useTheme();
+    const classes = useStyles(theme);
     const viewLeftMenu = useSelector((state: StoreState) => state.viewLeftMenu)
-    console.log('overview', viewLeftMenu);
     return(
         <div className={classes.bodyStyle}>
             <Drawer 
