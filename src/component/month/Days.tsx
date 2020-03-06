@@ -1,6 +1,9 @@
 import React from 'react';
-import DayParts from 'component/month/DayParts';
+
 import makeStyles from '@material-ui/core/styles/makeStyles';
+
+import DayParts from 'component/month/DayParts';
+import DayNulls from 'component/month/DayNullParts';
 
 const useStyles = makeStyles({
     calendarStyle: {
@@ -24,7 +27,7 @@ type Props = OwnProps;
 const firstWeek = (fw: number, d: number) => {
     let l = [];
     for (let i = 0; i < fw; i++) {
-        l.push(<DayParts day={0} schedule={[{title: "before"}]}/>);
+        l.push(<DayNulls />);
     }
     for (let i = 0; i < d; i++) {
         l.push(<DayParts day={i + 1} schedule={[{title: ""}]}/>);
@@ -45,9 +48,12 @@ const Days: React.FC<Props> = (props) => {
 
     for (let i = firstWeekEndDay + 1; i < monthDays + 1;) {
         let lst = [];
-        for (let u = 0; u < 7; u++) {
+        const nextWeekDay = i + 7;
+        for (i; i < nextWeekDay && i < monthDays + 1; i++) {
             lst.push(<DayParts day={i} schedule={[{title: ""}]} />);
-            i++;
+        }
+        for (i; i < nextWeekDay; i++) {
+            lst.push(<DayNulls />);
         }
         t.push(lst);
     }
