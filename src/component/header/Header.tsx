@@ -6,7 +6,10 @@ import useTheme from '@material-ui/core/styles/useTheme';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import ToolBar from '@material-ui/core/Toolbar';
+
 import DehazeIcon from '@material-ui/icons/Dehaze';
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
+import IconButton from '@material-ui/core/IconButton';
 
 import { NextSelector, PrevSelector } from 'component/pub/PageSelector';
 import { useDispatch } from 'react-redux';
@@ -30,26 +33,36 @@ const useStyle = makeStyles((theme) => ({
     monthViews: {
         textAlign: "center",
         fontSize: "30px"
+    },
+    hambergerButton: {
+        cursor: 'pointer',
     }
 }));
 
-const Header: React.FC<Props> = (props) => {
+const Header: React.FC<Props> = () => {
     const {id} = useParams<{id: string|undefined}>();
+
+    const theme = useTheme();
+    const classes = useStyle(theme);
+
     const dispatch = useDispatch();
     const changeViewingAction = useCallback(
         () => dispatch({type: ActionTypes.CHANGEVIEWINGLEFTMENU}),
         [dispatch]
     );
+
     const m = parseInt(id);
-    const theme = useTheme();
-    const classes = useStyle(theme);
     const prev = m - 1 < 1 ? 12 : m - 1;
     const next = m + 1 > 12 ? 1 : m + 1;
 
     return(
         <AppBar className={classes.appBarStyle}>
             <ToolBar>
-                <DehazeIcon onClick={changeViewingAction}/>
+                <IconButton onClick={changeViewingAction}>
+                    <DehazeIcon/>
+                </IconButton>
+                <CalendarTodayIcon />
+                <Typography>カレンダー</Typography>
                 <PrevSelector link={prev} />
                 <NextSelector link={next} />
                 <Typography className={classes.monthViews}>{id}月</Typography>
