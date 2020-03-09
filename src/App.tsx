@@ -9,10 +9,12 @@ const App = () => {
   return (
     <BrowserRouter>
       <div>
+        <Route path='/:id'>
+            <Header />
+        </Route>
         <Switch>
           <Redirect exact path="/" to="/2" />
           <Route path='/:id'>
-            <Header />
             <Overview />
           </Route>
         </Switch>

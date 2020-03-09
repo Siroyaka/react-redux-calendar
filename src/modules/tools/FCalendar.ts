@@ -25,6 +25,9 @@ export const getMonthCalendar = (year: number, month: number) => {
         for (i; i < nxWeekDay && i < monthDays + 1; i++) {
             lst.push(i);
         } 
+        for (i; i < nxWeekDay; i++) {
+            lst.push(0);
+        }
         t.push(lst);
     }
     return t;
