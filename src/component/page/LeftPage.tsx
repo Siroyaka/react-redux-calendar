@@ -21,9 +21,7 @@ const LeftPage: React.FC = () => {
     const {id} = useParams<{id: string|undefined}>();
     const urlMonth = parseInt(id);
     return(
-        <ToolBar variant='dense'>
-            <MiniCalendar year={2020} month={urlMonth}/>
-        </ToolBar>
+        <MiniCalendar year={2020} month={urlMonth}/>
     );
 }
 
