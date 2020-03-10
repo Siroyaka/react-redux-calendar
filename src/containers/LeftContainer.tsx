@@ -1,10 +1,10 @@
 import React from 'react';
 
-import LeftComponent from 'component/lefts/LeftComponent';
+import LeftPage from 'component/page/LeftPage';
 
 const LeftContainer : React.FC = () => {
     return(
-        <LeftComponent />
+        <LeftPage />
     );
 }
 

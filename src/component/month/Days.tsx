@@ -2,7 +2,7 @@ import React from 'react';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
-import DayParts from 'component/month/DayParts';
+import DayParts from 'component/month/helper/DayParts';
 import DayNulls from 'component/month/DayNullParts';
 
 const useStyles = makeStyles({

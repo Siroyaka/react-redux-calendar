@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
 
-import CalendarForm from 'component/Form';
+import CalendarForm from 'component/page/RightPage';
 import { StoreState, StoreAction } from 'Store';
 import { pageMove, reload } from 'modules/Module';
 

@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import ToolBar from '@material-ui/core/Toolbar';
 
-import MiniCalendar from 'component/lefts/MiniCalendar';
+import MiniCalendar from 'component/lefts/helper/MiniCalendar';
 
 const useStyles = makeStyles({
     miniCalendar: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     }
 })
 
-const LeftComponent: React.FC = () => {
+const LeftPage: React.FC = () => {
     const classes = useStyles();
     const {id} = useParams<{id: string|undefined}>();
     const urlMonth = parseInt(id);
@@ -27,4 +27,4 @@ const LeftComponent: React.FC = () => {
     );
 }
 
-export default LeftComponent;
+export default LeftPage;

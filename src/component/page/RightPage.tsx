@@ -17,7 +17,7 @@ const getData = (month: number, data: IMonthFormat[]) => {
 
 type Props = ContainerProps;
 
-const CalendarForm = (props: Props) => {
+const RightPage = (props: Props) => {
     const {id} = useParams<RouteParams>();
     const {schedules} = props;
     const urlMonth = parseInt(id);
@@ -28,4 +28,4 @@ const CalendarForm = (props: Props) => {
     );
 }
 
-export default CalendarForm;
+export default RightPage;
