@@ -2,26 +2,25 @@ import React from 'react';
 import { useParams } from 'react-router';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import ToolBar from '@material-ui/core/Toolbar';
 
 import MiniCalendar from 'component/lefts/helper/MiniCalendar';
+import { IUrlParams } from 'modules/interface/ICalendar';
 
 const useStyles = makeStyles({
-    miniCalendar: {
-
-
-    },
-    conponentStyle: {
+    componentStyle: {
         backgroundColor: 'blue'
-    }
+    },
 })
 
 const LeftPage: React.FC = () => {
+    const param = useParams<IUrlParams>();
     const classes = useStyles();
-    const {id} = useParams<{id: string|undefined}>();
-    const urlMonth = parseInt(id);
+    const year = parseInt(param.year);
+    const month = parseInt(param.month);
     return(
-        <MiniCalendar year={2020} month={urlMonth}/>
+        <div className={classes.componentStyle}>
+            <MiniCalendar year={year} month={month}/>
+        </div>
     );
 }
 

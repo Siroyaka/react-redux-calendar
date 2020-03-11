@@ -1,30 +1,25 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {ArrowBack, ArrowForward} from '@material-ui/icons';
+import { Link } from 'react-router-dom';
+
+import { ArrowBack, ArrowForward } from '@material-ui/icons';
 
 interface OwnProps {
-    link: number
+    link: string
 }
 
 type Props = OwnProps;
 
-const links = (n: number) => {
-    return '/' + n;
-}
-
 export const NextSelector: React.FC<Props> = ({link}) => {
-    const l = links(link);
     return (
-        <Link className='pslink' to={l}>
+        <Link className='pslink' to={link}>
             <ArrowForward />
         </Link>
     )
 }
 
 export const PrevSelector: React.FC<Props> = ({link}) => {
-    const l = links(link);
     return (
-        <Link className='pslink' to={l}>
+        <Link className='pslink' to={link}>
             <ArrowBack />
         </Link>
     )

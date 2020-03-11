@@ -23,15 +23,6 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'row',
     },
-    nowMonthcell: {
-        width: '20px',
-        height: '20px',
-    },
-    disableMonthcell: {
-        width: '20px',
-        height: '20px',
-        color: 'gray',
-    }
 }));
 
 const MiniCalendar : React.FC<Props> = (props) => {
@@ -47,7 +38,7 @@ const MiniCalendar : React.FC<Props> = (props) => {
                 <div className={classes.row}>
                     {
                         week.map((day) => (
-                            <Day day={{type: day.type, day: day.day}}/>
+                            <Day month={month} day={day}/>
                         ))
                     }
                 </div>

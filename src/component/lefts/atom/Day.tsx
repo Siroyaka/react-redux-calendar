@@ -3,10 +3,11 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography'
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
-type dayType = "LAST" | "NOW" | "NEXT";
+import { ICalendarDays } from 'modules/interface/ICalendar';
 
 interface OwnProps {
-    day: {day: number, type: dayType}
+    month: number,
+    day: ICalendarDays
 }
 
 type Props = OwnProps;
@@ -25,10 +26,9 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Day: React.FC<Props> = (props) => {
-    const {day} = props;
+    const {month, day} = props;
     const classes = useStyles();
-    const typoclass = day.type === "NOW" ? classes.normal : classes.disables;
-
+    const typoclass = month === day.month ? classes.normal : classes.disables;
     return(<Typography className={typoclass}>{day.day}</Typography>);
 }
 export default Day;

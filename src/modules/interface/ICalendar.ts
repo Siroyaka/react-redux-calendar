@@ -5,9 +5,21 @@ export interface IMonthFormat {
 
 export interface IDayFormat {
     day: number | null
-    schedule: ISchedule[]
+    schedules: ISchedule[]
 }
 
 export interface ISchedule {
     title: string
+}
+
+export interface ICalendarDays {
+    year: number,
+    month: number,
+    day: number
+}
+
+export interface IUrlParams {
+    year: string | undefined,
+    month: string | undefined,
+    day: string | undefined,
 }

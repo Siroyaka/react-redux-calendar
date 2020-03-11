@@ -1,12 +1,10 @@
-type day = {
-    day: number,
-    type: "LAST" | "NOW" | "NEXT"
-}
+import { ICalendarDays } from 'modules/interface/ICalendar';
+import { TransferWithinAStationOutlined } from '@material-ui/icons';
 
 class MonthData {
     readonly firstDayIndex: number;
     readonly firstDayWeekDay: number;
-    readonly monthDates: day[];
+    readonly monthDates: ICalendarDays[];
     readonly lastDay: number;
 
     constructor(year: number, month: number) {
@@ -14,17 +12,22 @@ class MonthData {
         const beforeMonthLastDay = new Date(year, month - 1, 0).getDate();
         this.firstDayWeekDay = new Date(year, month - 1, 1).getDay();
         this.firstDayIndex = beforeMonthLastDay;
-        this.monthDates = Array(beforeMonthLastDay + this.lastDay + 6);
+        const a = beforeMonthLastDay + this.lastDay + 6;
+        console.log(a);
+
+        this.monthDates = Array(a);
+        const lastMonth = month - 1 > 0 ? month - 1 : 12;
+        const nextMonth = month + 1 < 13 ? month + 1 : 1;
 
         let i = 0;
         for (i; i < beforeMonthLastDay; i++) {
-            this.monthDates[i] = {day:i + 1, type: "LAST"};
+            this.monthDates[i] = { year: lastMonth === 12 ? year - 1 : year, month: lastMonth, day:i + 1 };
         }
         for (let u = 0; u < this.lastDay; u++) {
-            this.monthDates[beforeMonthLastDay + u] = {day:u + 1, type: "NOW"};
+            this.monthDates[beforeMonthLastDay + u] = { year: year, month: month, day: u + 1 };
         }
         for (let u = 0; u < 6; u++) {
-            this.monthDates[beforeMonthLastDay + this.lastDay + u] = {day:u + 1, type: "NEXT"};
+            this.monthDates[beforeMonthLastDay + this.lastDay + u] = { year: nextMonth === 1 ? year + 1 : year, month: nextMonth, day: u + 1 };
         }
     }
 
@@ -35,10 +38,10 @@ class MonthData {
     makeCalendar() {
         const d = 35 - (this.firstDayWeekDay + this.lastDay);
         const weekNumber = d > 6 ? 4 : d > -1 ? 5 : 6;
-        let calendar: day[][] = Array(weekNumber);
+        let calendar: ICalendarDays[][] = Array(weekNumber);
         const startindex = (this.firstDayIndex - this.firstDayWeekDay);
         for (let i = 0; i < calendar.length; i++) {
-            let week: day[] = Array(7);
+            let week: ICalendarDays[] = Array(7);
             for (let k = 0; k < week.length; k++) {
                 const index = i * 7 + k + startindex;
                 week[k] = this.monthDates[index];
@@ -55,3 +58,10 @@ export const getMonthCalendar = (year: number, month: number) => {
     return monthData.makeCalendar();
 }
 
+export const getToday = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    return "/" + year + "/" + month + "/" + day;
+}

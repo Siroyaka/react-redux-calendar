@@ -11,9 +11,10 @@ import IconButton from '@material-ui/core/IconButton';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
 
-import { NextSelector, PrevSelector } from 'component/pub/PageSelector';
+import PageSelectors, { SelectorMode } from 'component/header/PageSelector';
 import { useDispatch } from 'react-redux';
 import { ActionTypes } from 'modules/Module';
+import { IUrlParams } from 'modules/interface/ICalendar';
 
 interface OwnProps {
 }
@@ -40,7 +41,7 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const Header: React.FC<Props> = () => {
-    const {id} = useParams<{id: string|undefined}>();
+    const params = useParams<IUrlParams>();
 
     const theme = useTheme();
     const classes = useStyle(theme);
@@ -51,9 +52,9 @@ const Header: React.FC<Props> = () => {
         [dispatch]
     );
 
-    const m = parseInt(id);
-    const prev = m - 1 < 1 ? 12 : m - 1;
-    const next = m + 1 > 12 ? 1 : m + 1;
+    const year = parseInt(params.year);
+    const month = parseInt(params.month);
+    const day = parseInt(params.day);
 
     return(
         <AppBar className={classes.appBarStyle}>
@@ -63,9 +64,8 @@ const Header: React.FC<Props> = () => {
                 </IconButton>
                 <CalendarTodayIcon />
                 <Typography>カレンダー</Typography>
-                <PrevSelector link={prev} />
-                <NextSelector link={next} />
-                <Typography className={classes.monthViews}>{id}月</Typography>
+                <PageSelectors year={year} month={month} day={day} mode={SelectorMode.MONTH} />
+                <Typography className={classes.monthViews}>{month}月</Typography>
             </ToolBar>
         </AppBar>
     );

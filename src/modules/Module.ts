@@ -4,13 +4,11 @@ import monthSchedules from 'data/MonthData.json';
 
 // Initial State
 export interface AppState {
-    readonly schedules: IMonthFormat[];
     readonly viewMonth: number;
     readonly viewLeftMenu: boolean;
 }
 
 const initialState: AppState = {
-    schedules: monthSchedules.data,
     viewMonth: 2,
     viewLeftMenu: true
 }

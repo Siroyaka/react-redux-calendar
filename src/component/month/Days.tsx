@@ -30,7 +30,6 @@ const firstWeek = (fw: number, d: number) => {
         l.push(<DayNulls />);
     }
     for (let i = 0; i < d; i++) {
-        l.push(<DayParts day={i + 1} schedule={[{title: ""}]}/>);
     }
     return l;
 }
@@ -50,7 +49,6 @@ const Days: React.FC<Props> = (props) => {
         let lst = [];
         const nextWeekDay = i + 7;
         for (i; i < nextWeekDay && i < monthDays + 1; i++) {
-            lst.push(<DayParts day={i} schedule={[{title: ""}]} />);
         }
         for (i; i < nextWeekDay; i++) {
             lst.push(<DayNulls />);

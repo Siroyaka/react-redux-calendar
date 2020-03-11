@@ -15,18 +15,11 @@ const useStyles = makeStyles({
 type Props = IDayFormat;
 
 const MonthDayParts: React.FC<Props> = (props: Props) => {
-    const {day, schedule} = props;
+    const {day} = props;
     const classes = useStyles();
-    let schedulecount;
-    if (schedule.length > 0) {
-        schedulecount = <div>Schedule: {schedule.length}</div>
-    } else {
-        schedulecount = <div></div>
-    }
     return(
         <Card className={classes.cellStyle}>
             <TypoGraphy align='center'>{day}</TypoGraphy>
-            <div>{schedulecount}</div>
         </Card>
     );
 }
