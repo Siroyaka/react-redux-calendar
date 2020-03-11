@@ -7,7 +7,6 @@ import Drawer from '@material-ui/core/Drawer';
 
 import LeftContainer from 'containers/LeftContainer';
 import RightContainer from 'containers/RightContainer';
-import './Overview.css';
 import { useSelector } from 'react-redux';
 import { StoreState } from 'Store';
 

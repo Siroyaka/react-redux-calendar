@@ -4,6 +4,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import useTheme from '@material-ui/core/styles/useTheme';
 
 import { getMonthCalendar } from 'modules/tools/FCalendar';
+import Day from 'component/lefts/atom/Day';
 
 interface OwnProps {
     year: number,
@@ -46,7 +47,7 @@ const MiniCalendar : React.FC<Props> = (props) => {
                 <div className={classes.row}>
                     {
                         week.map((day) => (
-                            <div className={classes.nowMonthcell}>{day.day}</div>
+                            <Day day={{type: day.type, day: day.day}}/>
                         ))
                     }
                 </div>
