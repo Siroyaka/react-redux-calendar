@@ -1,6 +1,4 @@
 import { Reducer } from "redux";
-import { IMonthFormat } from 'modules/interface/ICalendar';
-import monthSchedules from 'data/MonthData.json';
 
 // Initial State
 export interface AppState {

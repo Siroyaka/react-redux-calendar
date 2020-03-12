@@ -1,5 +1,4 @@
 import { ICalendarDays } from 'modules/interface/ICalendar';
-import { TransferWithinAStationOutlined } from '@material-ui/icons';
 
 class MonthData {
     readonly firstDayIndex: number;
