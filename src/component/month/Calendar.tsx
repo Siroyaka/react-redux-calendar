@@ -9,6 +9,7 @@ import { getMonthCalendar } from 'modules/tools/FCalendar';
 
 const useStyles = makeStyles({
     calendarStyle: {
+        height: '100%',
         display: 'flex',
         flexDirection: 'column',
     }

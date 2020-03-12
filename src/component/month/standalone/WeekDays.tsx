@@ -15,7 +15,7 @@ const WeekDays : React.FC = () => {
     const classes = useStyles();
     const weekDays = ['日', '月', '火', '水', '木', '金', '土'];
     return(
-        <Box display='flex' flexBasis='0' flexDirection='row' justifyContent='space-between'>
+        <Box display='flex' flex='none' flexDirection='row' justifyContent='space-between'>
             {weekDays.map((wd: string) => (
                 <Paper variant='outlined' square className={classes.card}>
                     {wd}

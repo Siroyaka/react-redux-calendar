@@ -8,11 +8,13 @@ import { ICalendarDays } from 'modules/interface/ICalendar';
 const useStyles = makeStyles({
     calendarStyle: {
         display: 'flex',
+        flex: '1 1 0%',
         flexDirection: 'column',
         justifyContent: 'space-between'
     },
     rowStyle: {
         display: 'flex',
+        flex: '1 1 0%',
         flexDirection: 'row',
     }
 });

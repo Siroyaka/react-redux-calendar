@@ -4,8 +4,6 @@ import clsx from 'clsx';
 import TypoGraphy from '@material-ui/core/Typography';
 // import makeStyles from '@material-ui/core/styles/makeStyles';
 import Paper from '@material-ui/core/Paper';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
 import makeStyle from '@material-ui/core/styles/makeStyles';
 
 import { ICalendarDays } from 'modules/interface/ICalendar';
@@ -22,6 +20,7 @@ const useStyles = makeStyle(() => ({
 
     },
     card: {
+        flex: '1 1 0%'
 
     },
     disablesTypo: {

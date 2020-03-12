@@ -8,7 +8,6 @@ import { IUrlParams } from 'modules/interface/ICalendar';
 
 const useStyles = makeStyles({
     componentStyle: {
-        backgroundColor: 'blue'
     },
 })
 

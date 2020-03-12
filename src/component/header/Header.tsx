@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import useTheme from '@material-ui/core/styles/useTheme';
@@ -12,7 +13,7 @@ import DehazeIcon from '@material-ui/icons/Dehaze';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
 
 import PageSelectors, { SelectorMode } from 'component/header/PageSelector';
-import { useDispatch } from 'react-redux';
+import CalendarTitle from 'component/header/standalone/CalendarTitle';
 import { ActionTypes } from 'modules/Module';
 import { IUrlParams } from 'modules/interface/ICalendar';
 
@@ -62,10 +63,9 @@ const Header: React.FC<Props> = () => {
                 <IconButton onClick={changeViewingAction}>
                     <DehazeIcon/>
                 </IconButton>
-                <CalendarTodayIcon />
-                <Typography>カレンダー</Typography>
+                <CalendarTitle />
                 <PageSelectors year={year} month={month} day={day} mode={SelectorMode.MONTH} />
-                <Typography className={classes.monthViews}>{month}月</Typography>
+                <Typography className={classes.monthViews} variant='h6'>{year}年{month}月</Typography>
             </ToolBar>
         </AppBar>
     );

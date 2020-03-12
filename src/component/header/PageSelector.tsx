@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { ArrowBack, ArrowForward } from '@material-ui/icons';
 import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 
 export enum SelectorMode {
     YEAR,
@@ -66,10 +66,10 @@ const makeLinkMode = (year: number, month: number, day: number, mode: SelectorMo
     }
 
     return (
-        <React.Fragment>
+        <Box width='70px'>
             <PrevLink link={prevLink} />
             <NextLink link={nextLink} />
-        </React.Fragment>
+        </Box>
     )
 }
 

@@ -9,15 +9,12 @@ import { getToday } from 'modules/tools/FCalendar';
 const App = () => {
   return (
     <BrowserRouter>
-      <div>
-        <Switch>
-          <Redirect exact path="/" to={getToday()} />
-          <Route path='/:year/:month/:day'>
-            <Header />
-            <Overview />
-          </Route>
-        </Switch>
-      </div>
+      <Switch>
+        <Redirect exact path="/" to={getToday()} />
+        <Route path='/:year/:month/:day'>
+          <Overview />
+        </Route>
+      </Switch>
     </BrowserRouter>
 
   );

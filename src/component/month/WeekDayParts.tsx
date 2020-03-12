@@ -6,7 +6,7 @@ import Card from '@material-ui/core/Card';
 const useStyles = makeStyles({
     rowStyle: {
         display: 'flex',
-        flexBasis: '0',
+        flex: '1 1 0%',
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
