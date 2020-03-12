@@ -3,7 +3,9 @@ import clsx from 'clsx';
 
 import TypoGraphy from '@material-ui/core/Typography';
 // import makeStyles from '@material-ui/core/styles/makeStyles';
-import Card from '@material-ui/core/Card';
+import Paper from '@material-ui/core/Paper';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
 import makeStyle from '@material-ui/core/styles/makeStyles';
 
 import { ICalendarDays } from 'modules/interface/ICalendar';
@@ -33,14 +35,14 @@ const MonthDayParts: React.FC<Props> = (props: Props) => {
     const classes = useStyles();
 
     return(
-        <Card className={classes.card}>
+        <Paper className={classes.card} square variant='outlined'>
             <TypoGraphy 
                 className={clsx(classes.typo, {[classes.disablesTypo]:isDisables})}
                 align='center'
             >
                 {day.day}
             </TypoGraphy>
-        </Card>
+        </Paper>
     );
 }
 

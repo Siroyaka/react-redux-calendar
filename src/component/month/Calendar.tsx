@@ -2,7 +2,7 @@ import React from 'react';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
-import MonthWeekDayParts from 'component/month/WeekDayParts';
+import MonthWeekDayParts from 'component/month/standalone/WeekDays';
 // import Days from 'component/month/Days';
 import WeeklyCalendar from 'component/month/WeeklyCalendar';
 import { getMonthCalendar } from 'modules/tools/FCalendar';

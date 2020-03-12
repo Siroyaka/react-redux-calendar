@@ -1,18 +1,13 @@
 import React from 'react';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import Card from '@material-ui/core/Card';
+import Box from '@material-ui/core/Box';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles({
-    rowStyle: {
-        display: 'flex',
-        flexBasis: '0',
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-    cellStyle: {
+    card: {
+        flexBasis: '100%',
         textAlign: 'center',
-        flexBasis: '100%'
     }
 });
 
@@ -20,11 +15,13 @@ const WeekDays : React.FC = () => {
     const classes = useStyles();
     const weekDays = ['日', '月', '火', '水', '木', '金', '土'];
     return(
-        <div className={classes.rowStyle}>
+        <Box display='flex' flexBasis='0' flexDirection='row' justifyContent='space-between'>
             {weekDays.map((wd: string) => (
-                <Card className={classes.cellStyle}>{wd}</Card>
+                <Paper variant='outlined' square className={classes.card}>
+                    {wd}
+                </Paper>
             ))}
-        </div>
+        </Box>
     );
 }
 

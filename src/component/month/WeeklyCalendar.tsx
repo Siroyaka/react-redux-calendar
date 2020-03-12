@@ -2,7 +2,7 @@ import React from 'react';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
-import DayParts from 'component/month/helper/DayParts copy';
+import Day from 'component/month/helper/Day';
 import { ICalendarDays } from 'modules/interface/ICalendar';
 
 const useStyles = makeStyles({
@@ -34,7 +34,7 @@ const WeeklyCalendar: React.FC<Props> = (props) => {
             {weeklyCalendar.map((week) => (
                 <div className={classes.rowStyle}>
                     {week.map((day) => (
-                        <DayParts day={day} isDisables={day.month !== month}/>
+                        <Day day={day} isDisables={day.month !== month}/>
                     ))}
                 </div>
             ))}
