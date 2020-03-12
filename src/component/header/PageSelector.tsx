@@ -1,6 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { NextSelector, PrevSelector } from 'component/pub/PageSelector';
+import { ArrowBack, ArrowForward } from '@material-ui/icons';
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 
 export enum SelectorMode {
     YEAR,
@@ -46,10 +49,26 @@ const makeLinkMode = (year: number, month: number, day: number, mode: SelectorMo
             break;
     }
 
+    const PrevLink = (prop: {link: string}) => {
+        return(
+            <IconButton size='small' component={Link} to={prop.link}>
+                <ArrowBack />
+            </IconButton>
+        )
+    }
+
+    const NextLink = (prop: {link: string}) => {
+        return(
+            <IconButton size='small' component={Link} to={prop.link}>
+                <ArrowForward />
+            </IconButton>
+        )
+    }
+
     return (
         <React.Fragment>
-            <PrevSelector link={prevLink} />
-            <NextSelector link={nextLink} />
+            <PrevLink link={prevLink} />
+            <NextLink link={nextLink} />
         </React.Fragment>
     )
 }
