@@ -22,21 +22,22 @@ const useStyles = makeStyles({
 interface OwnProps {
     month: number,
     // schedules: {[key: string]: string[]},
-    weeklyCalendar: ICalendarDays[][]
+    weeklyCalendar: ICalendarDays[][],
+    onClick: (n: number) => void,
 }
 
 type Props = OwnProps;
 
 const WeeklyCalendar: React.FC<Props> = (props) => {
     const classes = useStyles();
-    const {month, weeklyCalendar} = props;
+    const {month, weeklyCalendar, onClick} = props;
 
     return(
         <div className={classes.calendarStyle}>
             {weeklyCalendar.map((week) => (
                 <div className={classes.rowStyle}>
                     {week.map((day) => (
-                        <Day day={day} isDisables={day.month !== month}/>
+                        <Day day={day} isDisables={day.month !== month} onClick={onClick}/>
                     ))}
                 </div>
             ))}

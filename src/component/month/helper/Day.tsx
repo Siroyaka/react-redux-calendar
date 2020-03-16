@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import clsx from 'clsx';
 
 import TypoGraphy from '@material-ui/core/Typography';
@@ -10,7 +10,8 @@ import { ICalendarDays } from 'modules/interface/ICalendar';
 
 interface OwnProps {
     day: ICalendarDays,
-    isDisables: boolean
+    isDisables: boolean,
+    onClick: (n: number) => void,
 }
 
 type Props = OwnProps;
@@ -30,11 +31,12 @@ const useStyles = makeStyle(() => ({
 }));
 
 const MonthDayParts: React.FC<Props> = (props: Props) => {
-    const { day, isDisables } = props;
+    const { day, isDisables, onClick } = props;
     const classes = useStyles();
+    const callBack = useCallback(() => (onClick(day.day)), []);
 
     return(
-        <Paper className={classes.card} square variant='outlined'>
+        <Paper className={classes.card} square variant='outlined' onClick={() => callBack()}>
             <TypoGraphy 
                 className={clsx(classes.typo, {[classes.disablesTypo]:isDisables})}
                 align='center'
