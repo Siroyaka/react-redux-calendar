@@ -9,8 +9,7 @@ import AppBar from '@material-ui/core/AppBar';
 import ToolBar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 
-import DehazeIcon from '@material-ui/icons/Dehaze';
-import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
+import MenuIcon from '@material-ui/icons/Menu';
 
 import PageSelectors, { SelectorMode } from 'component/header/PageSelector';
 import CalendarTitle from 'component/header/standalone/CalendarTitle';
@@ -61,7 +60,7 @@ const Header: React.FC<Props> = () => {
         <AppBar className={classes.appBarStyle}>
             <ToolBar>
                 <IconButton onClick={changeViewingAction}>
-                    <DehazeIcon/>
+                    <MenuIcon/>
                 </IconButton>
                 <CalendarTitle />
                 <PageSelectors year={year} month={month} day={day} mode={SelectorMode.MONTH} />
