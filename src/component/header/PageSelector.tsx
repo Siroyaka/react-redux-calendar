@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { ArrowBack, ArrowForward } from '@material-ui/icons';
+import { NavigateBefore, NavigateNext } from '@material-ui/icons';
 import IconButton from '@material-ui/core/IconButton';
 import Box from '@material-ui/core/Box';
 
@@ -52,7 +52,7 @@ const makeLinkMode = (year: number, month: number, day: number, mode: SelectorMo
     const PrevLink = (prop: {link: string}) => {
         return(
             <IconButton size='small' component={Link} to={prop.link}>
-                <ArrowBack />
+                <NavigateBefore />
             </IconButton>
         )
     }
@@ -60,13 +60,13 @@ const makeLinkMode = (year: number, month: number, day: number, mode: SelectorMo
     const NextLink = (prop: {link: string}) => {
         return(
             <IconButton size='small' component={Link} to={prop.link}>
-                <ArrowForward />
+                <NavigateNext />
             </IconButton>
         )
     }
 
     return (
-        <Box width='70px'>
+        <Box width='70px' margin='0 10px'>
             <PrevLink link={prevLink} />
             <NextLink link={nextLink} />
         </Box>

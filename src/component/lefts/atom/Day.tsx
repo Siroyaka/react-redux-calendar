@@ -1,8 +1,8 @@
 import React from 'react';
-
+import clsx from 'clsx';
 
 import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 import { ICalendarDays } from 'modules/interface/ICalendar';
@@ -15,10 +15,10 @@ interface OwnProps {
 type Props = OwnProps;
 
 const useStyles = makeStyles(() => ({
-    part: {
+    parts: {
         height: '20px',
         width: '20px',
-        margin: '10px',
+        margin: '4px',
     },
     normal: {
         color: 'black',
@@ -32,6 +32,10 @@ const Day: React.FC<Props> = (props) => {
     const {month, day} = props;
     const classes = useStyles();
     const typoclass = month === day.month ? classes.normal : classes.disables;
-    return(<Typography className={typoclass}>{day.day}</Typography>);
+    return(
+        <IconButton className={clsx(classes.parts)} size='small'>
+            <Typography variant='caption' className={typoclass}>{day.day}</Typography>
+        </IconButton>
+    );
 }
 export default Day;

@@ -6,6 +6,8 @@ import Box from '@material-ui/core/Box';
 
 import { getMonthCalendar } from 'modules/tools/FCalendar';
 import Day from 'component/lefts/atom/Day';
+import WeekDays from 'component/lefts/standalone/WeekDays';
+import { Typography } from '@material-ui/core';
 
 interface OwnProps {
     year: number,
@@ -16,11 +18,8 @@ type Props = OwnProps;
 
 const useStyles = makeStyles((theme) => ({
     calendar: {
-        height: '120px',
-        width: '160px',
     },
     row: {
-        height: '20px',
         display: 'flex',
         flexDirection: 'row',
     },
@@ -35,17 +34,26 @@ const MiniCalendar : React.FC<Props> = (props) => {
 
     return(
         <Box>
-            <div className={classes.calendar}>
-                {monthCalendar.map((week) => (
-                    <div className={classes.row}>
-                        {
-                            week.map((day) => (
-                                <Day month={month} day={day}/>
-                            ))
-                        }
-                    </div>
-                ))}
-            </div>
+            <Box margin='0 10px' display='flex' flexDirection='row' justifyContent='space-Between'>
+                <Typography>test</Typography>
+                <Box>
+
+                </Box>
+            </Box>
+            <Box>
+                <WeekDays />
+                <div className={classes.calendar}>
+                    {monthCalendar.map((week) => (
+                        <div className={classes.row}>
+                            {
+                                week.map((day) => (
+                                    <Day month={month} day={day}/>
+                                ))
+                            }
+                        </div>
+                    ))}
+                </div>
+            </Box>
         </Box>
     )
 }
