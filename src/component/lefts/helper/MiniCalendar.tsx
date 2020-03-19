@@ -8,10 +8,12 @@ import { getMonthCalendar } from 'modules/tools/FCalendar';
 import Day from 'component/lefts/atom/Day';
 import WeekDays from 'component/lefts/standalone/WeekDays';
 import { Typography } from '@material-ui/core';
+import PageSelectors, { SelectorMode } from 'component/header/PageSelector';
 
 interface OwnProps {
     year: number,
-    month: number
+    month: number,
+    day: number,
 }
 
 type Props = OwnProps;
@@ -26,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MiniCalendar : React.FC<Props> = (props) => {
-    const {year, month} = props;
+    const {year, month, day} = props;
     const monthCalendar = getMonthCalendar(year, month);
 
     const theme = useTheme();
@@ -34,10 +36,12 @@ const MiniCalendar : React.FC<Props> = (props) => {
 
     return(
         <Box>
-            <Box margin='0 10px' display='flex' flexDirection='row' justifyContent='space-Between'>
-                <Typography>test</Typography>
+            <Box paddingLeft='10px' display='flex' flexDirection='row' justifyContent='space-Between'>
+                <Box paddingTop='5px'>
+                    <Typography>{year}年{month}月</Typography>
+                </Box>
                 <Box>
-
+                    <PageSelectors year={year} month={month} day={day} mode={SelectorMode.MONTH} />
                 </Box>
             </Box>
             <Box>

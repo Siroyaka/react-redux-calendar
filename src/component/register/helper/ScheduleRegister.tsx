@@ -34,7 +34,7 @@ const useStyles = makeStyle({
 });
 
 const ScheduleRegister: React.FC<Props> = (props) => {
-    const {open, value, onClose} = props;
+    const {open, onClose} = props;
     const classes = useStyles();
     return(
         <Dialog onClose={() => onClose(0)} open={open}>

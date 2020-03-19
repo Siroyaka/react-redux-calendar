@@ -2,7 +2,6 @@ import React from 'react';
 
 import Icon from '@material-ui/icons/CalendarToday';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 
 const CalendarTitle: React.FC = () => {
     return(
