@@ -2,6 +2,7 @@ import React from 'react';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import useTheme from '@material-ui/core/styles/useTheme';
+import Box from '@material-ui/core/Box';
 
 import { getMonthCalendar } from 'modules/tools/FCalendar';
 import Day from 'component/lefts/atom/Day';
@@ -33,17 +34,19 @@ const MiniCalendar : React.FC<Props> = (props) => {
     const classes = useStyles(theme);
 
     return(
-        <div className={classes.calendar}>
-            {monthCalendar.map((week) => (
-                <div className={classes.row}>
-                    {
-                        week.map((day) => (
-                            <Day month={month} day={day}/>
-                        ))
-                    }
-                </div>
-            ))}
-        </div>
+        <Box>
+            <div className={classes.calendar}>
+                {monthCalendar.map((week) => (
+                    <div className={classes.row}>
+                        {
+                            week.map((day) => (
+                                <Day month={month} day={day}/>
+                            ))
+                        }
+                    </div>
+                ))}
+            </div>
+        </Box>
     )
 }
 
