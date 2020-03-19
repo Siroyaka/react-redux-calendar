@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import Box from '@material-ui/core/Box';
 
 import MiniCalendar from 'component/lefts/helper/MiniCalendar';
 import { IUrlParams } from 'modules/interface/ICalendar';
@@ -17,9 +18,9 @@ const LeftPage: React.FC = () => {
     const year = parseInt(param.year);
     const month = parseInt(param.month);
     return(
-        <div className={classes.componentStyle}>
+        <Box display='flex' justifyContent='center'>
             <MiniCalendar year={year} month={month}/>
-        </div>
+        </Box>
     );
 }
 
