@@ -38,4 +38,5 @@ const Day: React.FC<Props> = (props) => {
         </IconButton>
     );
 }
+
 export default Day;
