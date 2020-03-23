@@ -6,7 +6,8 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 
 interface OwnProps {
     Icon: React.FC,
-    placeholder?: string
+    placeholder?: string,
+    defaultValue?: string,
 }
 
 type Props = OwnProps;
@@ -18,12 +19,18 @@ const useStyles = makeStyles({
 });
 
 const IconTextField: React.FC<Props> = (props) => {
-    const {Icon, placeholder} = props;
+    const {Icon, placeholder, defaultValue} = props;
     const classes = useStyles();
     return(
         <Box margin='10px 20px' display='flex' flexDirection='row'>
             <Icon />
-            <TextField className={classes.textfields} fullWidth placeholder={placeholder} size='small'/>
+            <TextField 
+                className={classes.textfields}
+                fullWidth
+                placeholder={placeholder}
+                size='small'
+                defaultValue={defaultValue}
+            />
         </Box>
     )
 }

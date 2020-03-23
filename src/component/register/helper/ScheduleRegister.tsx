@@ -16,7 +16,7 @@ import IconTextField from 'component/register/helper/IconTextField';
 
 interface OwnProps {
     open: boolean,
-    value: number,
+    dateValue?: string,
     onClose: (n: number) => void,
 }
 
@@ -34,7 +34,7 @@ const useStyles = makeStyle({
 });
 
 const ScheduleRegister: React.FC<Props> = (props) => {
-    const {open, onClose} = props;
+    const {open, onClose, dateValue} = props;
     const classes = useStyles();
     return(
         <Dialog onClose={() => onClose(0)} open={open}>
@@ -43,7 +43,7 @@ const ScheduleRegister: React.FC<Props> = (props) => {
                     <TextField placeholder="タイトルと日時を追加" size='medium' InputProps={{classes: {input: classes.titleFonts}}} />
                 </Box>
                 <Box margin='30px 0 16px 0'>
-                    <IconTextField placeholder='日時' Icon={ScheduleIcon} />
+                    <IconTextField placeholder='日時' Icon={ScheduleIcon} defaultValue={dateValue} />
                     <IconTextField placeholder='場所' Icon={LocationOnIcon} />
                     <IconTextField placeholder='説明' Icon={NotesIcon} />
                 </Box>

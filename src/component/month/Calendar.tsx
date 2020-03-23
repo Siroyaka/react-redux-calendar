@@ -23,12 +23,13 @@ const MonthCalender: React.FC<Props> = (props) => {
     const { year, month } = props;
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const [value, setValue] = React.useState(0);
+    const [dateValue, setDateValue] = React.useState("");
     const monthCalendar = getMonthCalendar(year, month);
-    const onClick = useCallback((n: number) => {
-        setValue(n);
+    const onClick = useCallback(( dateValue: string) => {
+        const addyear = year + "年" + dateValue;
+        setDateValue(addyear);
         setOpen(true);
-    }, []);
+    }, [year]);
     const onClose = useCallback((n: number) => {
         setOpen(false);
     }, [])
@@ -36,7 +37,7 @@ const MonthCalender: React.FC<Props> = (props) => {
         <div className={classes.calendarStyle}>
             <MonthWeekDayParts />
             <WeeklyCalendar month={month} weeklyCalendar={monthCalendar} onClick={onClick} />
-            <ScheduleRegister open={open} value={value} onClose={onClose} />
+            <ScheduleRegister open={open} onClose={onClose} dateValue={dateValue} />
         </div>
     );
 }

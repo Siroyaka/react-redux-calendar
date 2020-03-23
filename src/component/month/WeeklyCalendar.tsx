@@ -23,7 +23,7 @@ interface OwnProps {
     month: number,
     // schedules: {[key: string]: string[]},
     weeklyCalendar: ICalendarDays[][],
-    onClick: (n: number) => void,
+    onClick: (s: string) => void,
 }
 
 type Props = OwnProps;
@@ -31,13 +31,17 @@ type Props = OwnProps;
 const WeeklyCalendar: React.FC<Props> = (props) => {
     const classes = useStyles();
     const {month, weeklyCalendar, onClick} = props;
+    const onClickAdd = React.useCallback((date: number) => {
+        const monthAndDate = month + "月" + date + "日";
+        onClick(monthAndDate);
+    }, [month, onClick])
 
     return(
         <div className={classes.calendarStyle}>
             {weeklyCalendar.map((week) => (
                 <div className={classes.rowStyle}>
                     {week.map((day) => (
-                        <Day day={day} isDisables={day.month !== month} onClick={onClick}/>
+                        <Day day={day} isDisables={day.month !== month} onClick={onClickAdd}/>
                     ))}
                 </div>
             ))}

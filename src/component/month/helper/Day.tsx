@@ -11,7 +11,7 @@ import { ICalendarDays } from 'modules/interface/ICalendar';
 interface OwnProps {
     day: ICalendarDays,
     isDisables: boolean,
-    onClick: (n: number) => void,
+    onClick: (date: number) => void,
 }
 
 type Props = OwnProps;
