@@ -4,14 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import CalendarForm from 'component/page/RightPage';
 import { StoreState, StoreAction } from 'Store';
-import { pageMove, reload } from 'modules/Module';
+import { pageMove, reload, pushSchedule } from 'modules/Module';
 
 const mapStateToProps = (state: StoreState): StoreState => {
     return({...state});
 } 
 
 const mapDispatchToProps = (dispatch:Dispatch<StoreAction>) => {
-    return bindActionCreators({ pageMove, reload }, dispatch);
+    return bindActionCreators({ pageMove, reload, pushSchedule }, dispatch);
 }
 
 export type ContainerProps =

@@ -1,4 +1,4 @@
-import { ICalendarDays } from 'modules/interface/ICalendar';
+import { ICalendarDays, TDaySchedule, IDaySchedule } from 'modules/interface/ICalendar';
 
 class MonthData {
     readonly firstDayIndex: number;
@@ -63,4 +63,13 @@ export const getToday = () => {
     const month = today.getMonth() + 1;
     const day = today.getDate();
     return "/" + year + "/" + month + "/" + day;
+}
+
+export const adjustSchedules = (s: IDaySchedule[]): TDaySchedule => {
+    let res: TDaySchedule = {};
+    for (let i = 0; i < s.length; i++) {
+        const schedule = s[i];
+        res[schedule.daysId] = schedule;
+    }
+    return res;
 }

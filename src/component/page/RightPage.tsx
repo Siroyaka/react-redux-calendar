@@ -12,9 +12,9 @@ const RightPage = (props: Props) => {
     console.log(year, month);
     const urlMonth = parseInt(month);
     const urlYear = parseInt(year);
-
+    const { allSchedules, pushSchedule } = props;
     return (
-        <MonthCalender year={urlYear} month={urlMonth} />
+        <MonthCalender year={urlYear} month={urlMonth} allSchedules={allSchedules} pushSchedule={pushSchedule} />
     );
 }
 

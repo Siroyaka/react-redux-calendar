@@ -23,3 +23,23 @@ export interface IUrlParams {
     month: string | undefined,
     day: string | undefined,
 }
+
+export type TDaySchedule = {[key: string]: IDaySchedule};
+
+export interface IDaySchedule {
+    daysId: string,
+    year: number,
+    month: number,
+    day: number,
+    schedules: ISchedule[],
+}
+
+export interface ISchedule {
+    year: number,
+    month: number,
+    day: number,
+    time: string,
+    title: string,
+    place?: string,
+    memo?: string,
+}
