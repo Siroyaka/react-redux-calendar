@@ -5,9 +5,9 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 
 import MonthWeekDayParts from 'component/month/standalone/WeekDays';
 import ScheduleRegister from 'component/register/helper/ScheduleRegister';
-// import Days from 'component/month/Days';
 import WeeklyCalendar from 'component/month/WeeklyCalendar';
 import { getMonthCalendar } from 'modules/tools/FCalendar';
+import { ICalendarDays } from 'modules/interface/ICalendar';
 
 const useStyles = makeStyles({
     calendarStyle: {
@@ -25,11 +25,12 @@ const MonthCalender: React.FC<Props> = (props) => {
     const [open, setOpen] = React.useState(false);
     const [dateValue, setDateValue] = React.useState("");
     const monthCalendar = getMonthCalendar(year, month);
-    const onClick = useCallback(( dateValue: string) => {
-        const addyear = year + "年" + dateValue;
-        setDateValue(addyear);
+    const onClick = useCallback((dayValue: ICalendarDays) => {
+        const {year, month, day} = dayValue;
+        const daydata = year + "年" + month + '月' + day + '日';
+        setDateValue(daydata);
         setOpen(true);
-    }, [year]);
+    }, []);
     const onClose = useCallback((n: number) => {
         setOpen(false);
     }, [])

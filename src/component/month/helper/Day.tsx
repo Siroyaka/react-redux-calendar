@@ -11,7 +11,7 @@ import { ICalendarDays } from 'modules/interface/ICalendar';
 interface OwnProps {
     day: ICalendarDays,
     isDisables: boolean,
-    onClick: (date: number) => void,
+    onClick: (date: ICalendarDays) => void,
 }
 
 type Props = OwnProps;
@@ -33,7 +33,7 @@ const useStyles = makeStyle(() => ({
 const MonthDayParts: React.FC<Props> = (props: Props) => {
     const { day, isDisables, onClick } = props;
     const classes = useStyles();
-    const callBack = useCallback(() => (onClick(day.day)), [onClick, day.day]);
+    const callBack = useCallback(() => (onClick(day)), [onClick, day.day]);
 
     return(
         <Paper className={classes.card} square variant='outlined' onClick={() => callBack()}>
