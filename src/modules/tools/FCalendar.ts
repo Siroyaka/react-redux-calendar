@@ -73,7 +73,7 @@ export const adjustSchedules = (s: IDaySchedule[]): TDaySchedule => {
 }
 
 export const createDaysID = (y: number, m: number, d: number) => {
-    return (y * 13 + 10) * 32 + d;
+    return (y * 13 + m) * 32 + d;
 }
 
 export const restoreDaysID = (daysID: number) => {

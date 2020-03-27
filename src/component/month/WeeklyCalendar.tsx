@@ -41,8 +41,8 @@ const WeeklyCalendar: React.FC<Props> = (props) => {
         <div className={classes.calendarStyle}>
             {weeklyCalendar.map((week) => (
                 <div className={classes.rowStyle}>
-                    {week.map((day) => (
-                        <Day day={day} isDisables={day.month !== month} getSchedule={getSchedule} onClick={onClick}/>
+                    {week.map((dates) => (
+                        <Day dates={dates} isDisables={dates.month !== month} getSchedule={getSchedule} onClick={onClick}/>
                     ))}
                 </div>
             ))}
