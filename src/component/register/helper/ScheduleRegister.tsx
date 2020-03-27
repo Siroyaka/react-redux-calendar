@@ -38,7 +38,8 @@ const useStyles = makeStyle({
 
 const dateToView = (d?: ICalendarDays): string => {
     if (d === null || d === undefined) {return "";}
-    return d.year + '年' + d.month + '月' + d.day;
+    const value = d.year + '年' + d.month + '月' + d.day + '日';
+    return value;
 }
 
 const ScheduleRegister: React.FC<Props> = (props) => {
@@ -46,7 +47,8 @@ const ScheduleRegister: React.FC<Props> = (props) => {
     const [title, setTitle] = React.useState("");
     const [place, setPlace] = React.useState("");
     const [memo, setMemo] = React.useState("");
-    const [date, setDate] = React.useState(dateToView(dateValue));
+    const [date, setDate] = React.useState(dateValue);
+    const d = dateToView(dateValue);
     const save = React.useCallback(() => {
         if (title === "") {return;}
         if (dateValue === undefined) {return;}
@@ -69,12 +71,12 @@ const ScheduleRegister: React.FC<Props> = (props) => {
                     <TextField onChange={((t) => setTitle(t.target.value))} placeholder="タイトルを追加" size='medium' InputProps={{classes: {input: classes.titleFonts}}} />
                 </Box>
                 <Box margin='30px 0 16px 0'>
-                    <IconTextField placeholder='日時' Icon={ScheduleIcon} defaultValue={date} />
+                    <IconTextField placeholder='日時' Icon={ScheduleIcon} defaultValue={d} />
                     <IconTextField placeholder='場所' Icon={LocationOnIcon} />
                     <IconTextField placeholder='説明' Icon={NotesIcon} />
                 </Box>
                 <Box textAlign='right' margin='0 16px'>
-                    <Button variant='contained' color='primary'>保存</Button>
+                    <Button variant='contained' color='primary' onClick={() => save()}>保存</Button>
                 </Box>
             </Box>
             <IConButton className={classes.clearButton} onClick={onClose} size='small'>

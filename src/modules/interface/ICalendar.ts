@@ -27,7 +27,7 @@ export interface IUrlParams {
 export type TDaySchedule = {[key: string]: IDaySchedule};
 
 export interface IDaySchedule {
-    daysId: string,
+    daysId: number,
     year: number,
     month: number,
     day: number,

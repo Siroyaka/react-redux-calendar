@@ -12,8 +12,6 @@ class MonthData {
         this.firstDayWeekDay = new Date(year, month - 1, 1).getDay();
         this.firstDayIndex = beforeMonthLastDay;
         const a = beforeMonthLastDay + this.lastDay + 6;
-        console.log(a);
-
         this.monthDates = Array(a);
         const lastMonth = month - 1 > 0 ? month - 1 : 12;
         const nextMonth = month + 1 < 13 ? month + 1 : 1;
@@ -72,4 +70,16 @@ export const adjustSchedules = (s: IDaySchedule[]): TDaySchedule => {
         res[schedule.daysId] = schedule;
     }
     return res;
+}
+
+export const createDaysID = (y: number, m: number, d: number) => {
+    return (y * 13 + 10) * 32 + d;
+}
+
+export const restoreDaysID = (daysID: number) => {
+    const d = daysID % 32;
+    const a = (daysID - d) / 32;
+    const m = a % 13;
+    const y = (a - m) / 13;
+    return [y, m, d];
 }

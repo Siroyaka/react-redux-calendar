@@ -1,9 +1,10 @@
 import { IDaySchedule } from 'modules/interface/ICalendar';
+import { createDaysID } from 'modules/tools/FCalendar';
 
 export const GetInitialDaySchedules = (): IDaySchedule[] => {
     const schedule: IDaySchedule[] = [
         {
-            daysId: '20200320',
+            daysId: createDaysID(2020, 3, 20),
             year: 2020,
             month: 3,
             day: 20,
@@ -25,7 +26,7 @@ export const GetInitialDaySchedules = (): IDaySchedule[] => {
             ]
         },
         {
-            daysId: '20200314',
+            daysId: createDaysID(2020, 3, 14),
             year: 2020,
             month: 3,
             day: 14,
@@ -40,7 +41,7 @@ export const GetInitialDaySchedules = (): IDaySchedule[] => {
             ]
         },
         {
-            daysId: '20200220',
+            daysId: createDaysID(2020, 2, 20),
             year: 2020,
             month: 2,
             day: 20,
@@ -55,7 +56,6 @@ export const GetInitialDaySchedules = (): IDaySchedule[] => {
             ]
         },
     ];
-
 
     return schedule;
 }

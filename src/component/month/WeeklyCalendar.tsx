@@ -3,7 +3,8 @@ import React from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 import Day from 'component/month/helper/Day';
-import { ICalendarDays } from 'modules/interface/ICalendar';
+import { ICalendarDays, TDaySchedule } from 'modules/interface/ICalendar';
+import { createDaysID } from 'modules/tools/FCalendar';
 
 const useStyles = makeStyles({
     calendarStyle: {
@@ -21,7 +22,7 @@ const useStyles = makeStyles({
 
 interface OwnProps {
     month: number,
-    // schedules: {[key: string]: string[]},
+    schedules: TDaySchedule,
     weeklyCalendar: ICalendarDays[][],
     onClick: (day: ICalendarDays) => void,
 }
@@ -30,14 +31,18 @@ type Props = OwnProps;
 
 const WeeklyCalendar: React.FC<Props> = (props) => {
     const classes = useStyles();
-    const {month, weeklyCalendar, onClick} = props;
+    const {month, weeklyCalendar, onClick, schedules} = props;
+    const getSchedule = React.useCallback((date: ICalendarDays) => {
+        const daysID = createDaysID(date.year, date.month, date.day);
+        return daysID in schedules ? schedules[daysID].schedules : null;
+    }, [schedules]);
 
     return(
         <div className={classes.calendarStyle}>
             {weeklyCalendar.map((week) => (
                 <div className={classes.rowStyle}>
                     {week.map((day) => (
-                        <Day day={day} isDisables={day.month !== month} onClick={onClick}/>
+                        <Day day={day} isDisables={day.month !== month} getSchedule={getSchedule} onClick={onClick}/>
                     ))}
                 </div>
             ))}

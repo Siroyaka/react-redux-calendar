@@ -9,7 +9,6 @@ type Props = ContainerProps;
 
 const RightPage = (props: Props) => {
     const {year, month} = useParams<IUrlParams>();
-    console.log(year, month);
     const urlMonth = parseInt(month);
     const urlYear = parseInt(year);
     const { allSchedules, pushSchedule } = props;
