@@ -5,6 +5,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import Day from 'component/month/helper/Day';
 import { ICalendarDays, TDaySchedule } from 'modules/interface/ICalendar';
 import { createDaysID } from 'modules/tools/FCalendar';
+import { MinimizeSharp } from '@material-ui/icons';
 
 const useStyles = makeStyles({
     calendarStyle: {
@@ -17,6 +18,9 @@ const useStyles = makeStyles({
         display: 'flex',
         flex: '1 1 0%',
         flexDirection: 'row',
+        width: '100%',
+        minWidth: '0',
+        minHeight: '0',
     }
 });
 
