@@ -42,15 +42,15 @@ const useStyles = makeStyle(() => ({
 const MonthDayParts: React.FC<Props> = (props: Props) => {
     const { dates, isDisables, onClick, getSchedule } = props;
     const classes = useStyles();
-    const callBack = useCallback(() => (onClick(dates)), [onClick, dates.day]);
+    const registerSchedule = useCallback(() => (onClick(dates)), [onClick, dates]);
     const schedule = getSchedule(dates);
     const cards = () => {
         if (schedule === null) {return null;}
         return(
-            <Box display='flex' flexDirection='column' overflow='hidden' minWidth='0' minHeight='0' >
-                {schedule.map((val) => (
+            <Box display='flex' alignItems='center' flexDirection='column' overflow='hidden' minWidth='0' minHeight='0' >
+                {schedule.map((val, i) => (
                     <Card className={classes.scheduleCard}>
-                        <Box width='90%' overflow='hidden' whiteSpace='nowrap' textOverflow='...'>
+                        <Box width='95%' paddingLeft='2%' overflow='hidden' whiteSpace='nowrap' textOverflow='...'>
                             {val.title}
                         </Box>
                     </Card>
@@ -60,7 +60,7 @@ const MonthDayParts: React.FC<Props> = (props: Props) => {
     }
 
     return(
-        <Paper className={classes.paper} square variant='outlined' onClick={() => callBack()}>
+        <Paper className={classes.paper} square variant='outlined' onClick={() => registerSchedule()}>
             <TypoGraphy 
                 className={clsx(classes.typo, {[classes.disablesTypo]:isDisables})}
                 align='center'

@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 import MonthWeekDayParts from 'component/month/standalone/WeekDays';
-import ScheduleRegister from 'component/register/helper/ScheduleRegister';
+import ScheduleRegister from 'component/dialog/helper/ScheduleRegister';
 import WeeklyCalendar from 'component/month/WeeklyCalendar';
 import { getMonthCalendar, createDaysID } from 'modules/tools/FCalendar';
 import { ICalendarDays, IDaySchedule, IDayFormat, TDaySchedule, ISchedule } from 'modules/interface/ICalendar';

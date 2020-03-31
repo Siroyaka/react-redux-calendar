@@ -12,7 +12,7 @@ import ScheduleIcon from '@material-ui/icons/Schedule';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import NotesIcon from '@material-ui/icons/Notes';
 
-import IconTextField from 'component/register/helper/IconTextField';
+import IconTextField from 'component/dialog/helper/IconTextField';
 
 import { ISchedule, ICalendarDays } from 'modules/interface/ICalendar';
 
@@ -47,7 +47,7 @@ const ScheduleRegister: React.FC<Props> = (props) => {
     const [title, setTitle] = React.useState("");
     const [place, setPlace] = React.useState("");
     const [memo, setMemo] = React.useState("");
-    const [date, setDate] = React.useState(dateValue);
+    // const [date, setDate] = React.useState(dateValue);
     const d = dateToView(dateValue);
     const save = React.useCallback(() => {
         if (title === "") {return;}
@@ -61,7 +61,7 @@ const ScheduleRegister: React.FC<Props> = (props) => {
             day: dateValue.day,
             time: "00:00:00"
         });
-    }, [dateValue, title, place, memo, date, pushSchedule]);
+    }, [dateValue, title, place, memo, pushSchedule]);
 
     const classes = useStyles();
     return(
@@ -71,9 +71,9 @@ const ScheduleRegister: React.FC<Props> = (props) => {
                     <TextField onChange={((t) => setTitle(t.target.value))} placeholder="タイトルを追加" size='medium' InputProps={{classes: {input: classes.titleFonts}}} />
                 </Box>
                 <Box margin='30px 0 16px 0'>
-                    <IconTextField placeholder='日時' Icon={ScheduleIcon} defaultValue={d} />
-                    <IconTextField placeholder='場所' Icon={LocationOnIcon} />
-                    <IconTextField placeholder='説明' Icon={NotesIcon} />
+                    <IconTextField placeholder='日時' fullWidth size='small' disabled Icon={ScheduleIcon} defaultValue={d} />
+                    <IconTextField placeholder='場所' fullWidth size='small' Icon={LocationOnIcon} onChange={(t) => setPlace(t.target.value)} />
+                    <IconTextField placeholder='説明' fullWidth size='small' Icon={NotesIcon} onChange={(t) => setMemo(t.target.value)}/>
                 </Box>
                 <Box textAlign='right' margin='0 16px'>
                     <Button variant='contained' color='primary' onClick={() => save()}>保存</Button>
