@@ -5,6 +5,7 @@ import TypoGraphy from '@material-ui/core/Typography';
 // import makeStyles from '@material-ui/core/styles/makeStyles';
 import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import Box from '@material-ui/core/Box';
 import makeStyle from '@material-ui/core/styles/makeStyles';
 
@@ -14,7 +15,8 @@ interface OwnProps {
     dates: ICalendarDays,
     isDisables: boolean,
     getSchedule: (date: ICalendarDays) => ISchedule[] | null,
-    onClick: (date: ICalendarDays) => void,
+    onClickCalendar: (date: ICalendarDays) => void,
+    onClickSchedule: (schedule: ISchedule, index: number) => void,
 }
 
 type Props = OwnProps;
@@ -40,19 +42,25 @@ const useStyles = makeStyle(() => ({
 }));
 
 const MonthDayParts: React.FC<Props> = (props: Props) => {
-    const { dates, isDisables, onClick, getSchedule } = props;
+    const { dates, isDisables, onClickCalendar, onClickSchedule, getSchedule } = props;
     const classes = useStyles();
-    const registerSchedule = useCallback(() => (onClick(dates)), [onClick, dates]);
+    const registerSchedule = useCallback(() => (onClickCalendar(dates)), [onClickCalendar, dates]);
     const schedule = getSchedule(dates);
+    const showSchedule = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>, s: ISchedule, index: number) => {
+        e.stopPropagation();
+        onClickSchedule(s, index)
+    }, [onClickSchedule]);
     const cards = () => {
         if (schedule === null) {return null;}
         return(
             <Box display='flex' alignItems='center' flexDirection='column' overflow='hidden' minWidth='0' minHeight='0' >
                 {schedule.map((val, i) => (
-                    <Card className={classes.scheduleCard}>
-                        <Box width='95%' paddingLeft='2%' overflow='hidden' whiteSpace='nowrap' textOverflow='...'>
-                            {val.title}
-                        </Box>
+                    <Card className={classes.scheduleCard} onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => showSchedule(e, val, i)}>
+                        <CardActionArea>
+                            <Box width='95%' paddingLeft='2%' overflow='hidden' whiteSpace='nowrap' textOverflow='...'>
+                                {val.title}
+                            </Box>
+                        </CardActionArea>
                     </Card>
                 ))}
             </Box>
