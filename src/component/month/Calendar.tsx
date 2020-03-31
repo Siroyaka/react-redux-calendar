@@ -2,7 +2,6 @@ import React from 'react';
 import { useCallback } from 'react';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import Dialog from '@material-ui/core/Dialog';
 
 import MonthWeekDayParts from 'component/month/standalone/WeekDays';
 import ScheduleRegister from 'component/dialog/helper/ScheduleRegister';
@@ -28,27 +27,17 @@ interface OwnProps {
 
 type Props = OwnProps;
 
-const dateSlice = (num: number, len: number) => {
-    return ('0000' + num).slice(len * -1);
-}
-
 const MonthCalender: React.FC<Props> = (props) => {
     const { year, month, allSchedules, pushSchedule } = props;
     const classes = useStyles();
 
-    const [dialogOpen, setDialogOpen] = React.useState(false);
     const [registersOpen, setRegistersOpen] = React.useState(false);
-    const [dialogItem, setDialogItem] = React.useState<JSX.IntrinsicElements>();
     const [scheduleViewOpen, setScheduleViewOpen] = React.useState(false);
     const [dateValue, setDateValue] = React.useState<ICalendarDays>({day: 0, month: 0, year: 0});
     const [scheduleIndex, setScheduleIndex] = React.useState(0);
     const [chooseSchedule, setChooseSchedule] = React.useState<ISchedule>({title: "", year: 0, month: 0, day: 0, time: "00:00"});
 
     const monthCalendar = getMonthCalendar(year, month);
-
-    const dialogOnClose = useCallback(() => {
-        setDialogOpen(false);
-    }, []);
 
     const onClick = useCallback((dayValue: ICalendarDays) => {
         setDateValue(dayValue);

@@ -68,7 +68,7 @@ const ShowScheduleDialog: React.FC<Props> = (props) => {
     const clickDelete = React.useCallback(() => {
         deleteSchedule(schedule, index);
         onClose();
-    }, [schedule, index, onClose]);
+    }, [deleteSchedule, schedule, index, onClose]);
 
     return(
         <Dialog onClose={onClose} open={open}>
