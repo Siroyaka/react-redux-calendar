@@ -10,7 +10,7 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <Redirect exact path="/" to={getToday()} />
-        <Route path='/:year/:month/:day'>
+        <Route key={'calendar'} path='/:year/:month/:day'>
           <Overview />
         </Route>
       </Switch>

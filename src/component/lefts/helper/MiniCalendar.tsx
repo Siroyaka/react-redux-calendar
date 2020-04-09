@@ -8,7 +8,7 @@ import { getMonthCalendar } from 'modules/tools/FCalendar';
 import Day from 'component/lefts/atom/Day';
 import WeekDays from 'component/lefts/standalone/WeekDays';
 import { Typography } from '@material-ui/core';
-import PageSelectors, { SelectorMode } from 'component/header/PageSelector';
+import PageSelectors from 'component/lefts/helper/PageSelectorMiniCalendar';
 
 interface OwnProps {
     year: number,
@@ -29,7 +29,21 @@ const useStyles = makeStyles((theme) => ({
 
 const MiniCalendar : React.FC<Props> = (props) => {
     const {year, month, day} = props;
-    const monthCalendar = getMonthCalendar(year, month);
+    const [nowMonth, setNowMonth] = React.useState(month);
+    const [nowYear, setNowYear] = React.useState(year);
+    const [calendar, setCalendar] = React.useState(getMonthCalendar(nowYear, nowMonth));
+    React.useEffect(
+        () => {
+            setNowMonth(month);
+            setNowYear(year);
+            setCalendar(getMonthCalendar(year, month));
+        }, [year, month]
+    );
+    const updateCalendar = React.useCallback((y: number, m: number) => {
+        setNowMonth(m);
+        setNowYear(y);
+        setCalendar(getMonthCalendar(y, m));
+    }, [setNowMonth, setNowYear, setCalendar]);
 
     const theme = useTheme();
     const classes = useStyles(theme);
@@ -38,20 +52,20 @@ const MiniCalendar : React.FC<Props> = (props) => {
         <Box>
             <Box paddingLeft='10px' display='flex' flexDirection='row' justifyContent='space-Between'>
                 <Box paddingTop='5px'>
-                    <Typography>{year}年{month}月</Typography>
+                    <Typography>{nowYear}年{nowMonth}月</Typography>
                 </Box>
                 <Box>
-                    <PageSelectors year={year} month={month} day={day} mode={SelectorMode.MONTH} />
+                    <PageSelectors year={nowYear} month={nowMonth} onClick={updateCalendar} />
                 </Box>
             </Box>
             <Box>
                 <WeekDays />
                 <div className={classes.calendar}>
-                    {monthCalendar.map((week) => (
+                    {calendar.map((week) => (
                         <div className={classes.row}>
                             {
-                                week.map((day) => (
-                                    <Day month={month} day={day}/>
+                                week.map((date) => (
+                                    <Day mainMonth={nowMonth} date={date}/>
                                 ))
                             }
                         </div>
