@@ -14,13 +14,13 @@ import NotesIcon from '@material-ui/icons/Notes';
 
 import IconTextField from 'component/dialog/helper/IconTextField';
 
-import { ISchedule, ICalendarDays } from 'modules/interface/ICalendar';
+import { IScheduleWithoutId, IDate } from 'modules/interface/ICalendar';
 
 interface OwnProps {
     open: boolean,
-    dateValue: ICalendarDays,
+    dateValue: IDate,
     onClose: () => void,
-    pushSchedule: (s: ISchedule) => void
+    pushSchedule: (s: IScheduleWithoutId, d: IDate) => void
 }
 
 type Props = OwnProps;
@@ -36,7 +36,7 @@ const useStyles = makeStyle({
     }
 });
 
-const dateToView = (d?: ICalendarDays): string => {
+const dateToView = (d?: IDate): string => {
     if (d === null || d === undefined) {return "";}
     const value = d.year + '年' + d.month + '月' + d.day + '日';
     return value;
@@ -51,17 +51,18 @@ const ScheduleRegister: React.FC<Props> = (props) => {
     const d = dateToView(dateValue);
     const save = React.useCallback(() => {
         if (title === "") {return;}
-        if (dateValue === undefined) {return;}
+        if (dateValue === undefined) {
+            onClose();
+            return;
+        }
         pushSchedule({
             title: title,
             place: place,
             memo: memo,
-            year: dateValue.year,
-            month: dateValue.month,
-            day: dateValue.day,
             time: "00:00:00"
-        });
-    }, [dateValue, title, place, memo, pushSchedule]);
+        }, dateValue);
+        onClose();
+    }, [dateValue, title, place, memo, pushSchedule, onClose]);
 
     const classes = useStyles();
     return(

@@ -9,14 +9,14 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import Box from '@material-ui/core/Box';
 import makeStyle from '@material-ui/core/styles/makeStyles';
 
-import { ICalendarDays, ISchedule } from 'modules/interface/ICalendar';
+import { IDate, ISchedule } from 'modules/interface/ICalendar';
 
 interface OwnProps {
-    dates: ICalendarDays,
+    dates: IDate,
     isDisables: boolean,
-    getSchedule: (date: ICalendarDays) => ISchedule[] | null,
-    onClickCalendar: (date: ICalendarDays) => void,
-    onClickSchedule: (schedule: ISchedule, index: number) => void,
+    getSchedule: (date: IDate) => ISchedule[] | null,
+    onClickCalendar: (date: IDate) => void,
+    onClickSchedule: (schedule: ISchedule, d: IDate) => void,
 }
 
 type Props = OwnProps;
@@ -48,7 +48,7 @@ const MonthDayParts: React.FC<Props> = (props: Props) => {
     const schedule = getSchedule(dates);
     const showSchedule = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>, s: ISchedule, index: number) => {
         e.stopPropagation();
-        onClickSchedule(s, index)
+        onClickSchedule(s, dates)
     }, [onClickSchedule]);
     const cards = () => {
         if (schedule === null) {return null;}

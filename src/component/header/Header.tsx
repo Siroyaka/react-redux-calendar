@@ -13,7 +13,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import PageSelectors, { SelectorMode } from 'component/header/PageSelector';
 import CalendarTitle from 'component/header/standalone/CalendarTitle';
-import { ActionTypes } from 'modules/Module';
 import { IUrlParams } from 'modules/interface/ICalendar';
 
 interface OwnProps {
@@ -52,9 +51,9 @@ const Header: React.FC<Props> = () => {
         [dispatch]
     );
 
-    const year = parseInt(params.year);
-    const month = parseInt(params.month);
-    const day = parseInt(params.day);
+    const year = parseInt(params.uYear);
+    const month = parseInt(params.uMonth);
+    const day = parseInt(params.uDay);
 
     return(
         <AppBar className={classes.appBarStyle}>

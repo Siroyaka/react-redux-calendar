@@ -14,15 +14,15 @@ import NotesIcon from '@material-ui/icons/Notes';
 
 import IconTextField from 'component/dialog/helper/IconTextField';
 
-import { ISchedule } from 'modules/interface/ICalendar';
+import { ISchedule, IDate } from 'modules/interface/ICalendar';
 
 interface OwnProps {
     open: boolean,
     schedule: ISchedule,
-    index: number,
+    date: IDate,
     onClose: () => void,
-    deleteSchedule: (s: ISchedule, i: number) => void,
-    updateSchedule: (s: ISchedule, i: number) => void,
+    deleteSchedule: (s: ISchedule, d: IDate) => void,
+    updateSchedule: (s: ISchedule, d: IDate) => void,
 }
 
 type Props = OwnProps;
@@ -44,14 +44,14 @@ const dateToView = (y: number, m: number, d: number): string => {
 }
 
 const ShowScheduleDialog: React.FC<Props> = (props) => {
-    const { open, index, schedule, onClose, deleteSchedule, updateSchedule } = props;
+    const { open, date, schedule, onClose, deleteSchedule, updateSchedule } = props;
     const classes = useStyles();
 
     const [title, setTitle] = React.useState<string|null>(null);
     const [place, setPlace] = React.useState<string|null>(null);
     const [memo, setMemo] = React.useState<string|null>(null);
     // const [date, setDate] = React.useState(dateValue);
-    const d = dateToView(schedule.year, schedule.month, schedule.day);
+    const d = dateToView(date.year, date.month, date.day);
     const clickUpdate = React.useCallback(() => {
         const newTitle = title !== null ? title : schedule.title;
         const newPlace = place !== null ? place : schedule.place;
@@ -61,14 +61,14 @@ const ShowScheduleDialog: React.FC<Props> = (props) => {
             title: newTitle,
             place: newPlace,
             memo: newMemo,
-        }, index);
+        }, date);
         onClose();
-    }, [schedule, title, place, memo, updateSchedule, index, onClose]);
+    }, [schedule, title, place, memo, updateSchedule, date, onClose]);
 
     const clickDelete = React.useCallback(() => {
-        deleteSchedule(schedule, index);
+        deleteSchedule(schedule, date);
         onClose();
-    }, [deleteSchedule, schedule, index, onClose]);
+    }, [deleteSchedule, schedule, date, onClose]);
 
     return(
         <Dialog onClose={onClose} open={open}>

@@ -1,0 +1,7 @@
+enum type {
+    PUSH_SCHEDULE = 'PUSHSCHEDULE',
+    DELETE_SCHEDULE = 'DELETESCHEDULE',
+    UPDATE_SCHEDULE = 'UPDATESCHEDULE'
+}
+
+export default type;

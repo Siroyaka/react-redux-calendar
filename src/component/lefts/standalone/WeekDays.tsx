@@ -4,8 +4,6 @@ import Typography from '@material-ui/core/Typography'
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box';
 
-// import { ICalendarDays } from 'modules/interface/ICalendar';
-
 interface OwnProps {
 }
 

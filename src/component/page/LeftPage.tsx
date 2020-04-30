@@ -8,9 +8,9 @@ import { IUrlParams } from 'modules/interface/ICalendar';
 
 const LeftPage: React.FC = () => {
     const param = useParams<IUrlParams>();
-    const year = parseInt(param.year);
-    const month = parseInt(param.month);
-    const day = parseInt(param.day);
+    const year = parseInt(param.uYear);
+    const month = parseInt(param.uMonth);
+    const day = parseInt(param.uDay);
     return(
         <Box display='flex' justifyContent='center'>
             <MiniCalendar year={year} month={month} day={day}/>

@@ -1,45 +1,31 @@
-export interface IMonthFormat {
-    month: number
-    days: IDayFormat[][]
-}
-
-export interface IDayFormat {
-    day: number | null
-    schedules: ISchedule[]
-}
-
-export interface ISchedule {
-    title: string
-}
-
-export interface ICalendarDays {
+export interface IDate {
     year: number,
     month: number,
     day: number
 }
 
 export interface IUrlParams {
-    year: string | undefined,
-    month: string | undefined,
-    day: string | undefined,
+    uYear: string,
+    uMonth: string,
+    uDay: string,
 }
 
-export type TDaySchedule = {[key: string]: IDaySchedule};
+export type TDaySchedule = { [key: string]: IDateInfo };
 
-export interface IDaySchedule {
-    daysId: number,
+export interface IDateInfo {
     year: number,
     month: number,
     day: number,
+    nextId: number,
     schedules: ISchedule[],
 }
 
 export interface ISchedule {
-    year: number,
-    month: number,
-    day: number,
+    id: number,
     time: string,
     title: string,
     place?: string,
     memo?: string,
 }
+
+export type IScheduleWithoutId = Omit<ISchedule, "id">;
