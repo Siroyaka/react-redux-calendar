@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 import CalendarForm from 'component/page/RightPage';
 import { StoreState } from 'Store';
-import actions from 'state/Schedules/actions';
+import operations from 'state/Schedules/operations';
 import { IUrlParams } from 'modules/interface/ICalendar';
 
 const parseValue = (s: string, d: number) => {
@@ -25,7 +25,7 @@ const addParamsToState = (up: IUrlParams, state: StoreState) => {
 } 
 
 const mapDispatchToProps = (dispatch:Dispatch<any>) => {
-    return bindActionCreators(actions, dispatch);
+    return bindActionCreators(operations, dispatch);
 }
 
 export type ContainerProps =
