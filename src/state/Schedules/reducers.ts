@@ -1,15 +1,14 @@
 import { combineReducers, Reducer } from 'redux';
 import types from './types';
-import { TDaySchedule } from 'modules/interface/ICalendar';
 import { GetInitialDaySchedules } from 'modules/tools/FInitialContents';
 import { adjustDateInfos, createDaysID } from 'modules/tools/FCalendar';
-import { ActionType } from './actions';
+import { ActionTypes } from './actions';
 
-export type State = TDaySchedule;
+export type State = typeof initialState;
 
-const initialState: State = adjustDateInfos(GetInitialDaySchedules());
+const initialState = adjustDateInfos(GetInitialDaySchedules());
 
-const scheduleReducer: Reducer<State, ActionType> = (state = initialState, action) => {
+const scheduleReducer: Reducer<State, ActionTypes> = (state = initialState, action) => {
     switch(action.type) {
         case types.PUSH_SCHEDULE:
         {

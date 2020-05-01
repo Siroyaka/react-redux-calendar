@@ -1,6 +1,6 @@
 import React from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, MapStateToProps } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import CalendarForm from 'component/page/RightPage';
@@ -14,14 +14,17 @@ const parseValue = (s: string, d: number) => {
 }
 
 const mapStateToProps = (state: StoreState) => {
-    return { ...state };
+    return {
+        state: state.scheduleReducer,
+        leftDrawerVisible: state.formControlerReducer.leftDrawerVisible
+    };
 }
 
-const addParamsToState = (up: IUrlParams, state: StoreState) => {
+const addParamsToState = (up: IUrlParams, state: ReturnType<typeof mapStateToProps>) => {
     const year = parseValue(up.uYear, 1990);
     const month = parseValue(up.uMonth, 1);
     const day = parseValue(up.uDay, 1);
-    return({state: state, year: year, month: month, day: day});
+    return({...state, year: year, month: month, day: day});
 } 
 
 const mapDispatchToProps = (dispatch:Dispatch<any>) => {

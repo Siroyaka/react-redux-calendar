@@ -1,29 +1,36 @@
 import Types from './types';
 
 export const switchLeftDrawerVisible = (visible: boolean) => ({
-    type: Types.LEFT_DRAWER_VISIBLE as Types.LEFT_DRAWER_VISIBLE,
+    type: Types.SWITCH_LEFT_DRAWER_VISIBLE as Types.SWITCH_LEFT_DRAWER_VISIBLE,
     visible: visible,
 });
 
 export const openScheduleRegister = () => ({
-    type: Types.SCHEDULE_REGISTER_VISIBLE as Types.SCHEDULE_REGISTER_VISIBLE,
+    type: Types.CHANGE_SCHEDULE_REGISTER_VISIBLE as Types.CHANGE_SCHEDULE_REGISTER_VISIBLE,
     visible: true,
 });
 
 export const closeScheduleRegister = () => ({
-    type: Types.SCHEDULE_REGISTER_VISIBLE as Types.SCHEDULE_REGISTER_VISIBLE,
+    type: Types.CHANGE_SCHEDULE_REGISTER_VISIBLE as Types.CHANGE_SCHEDULE_REGISTER_VISIBLE,
     visible: false,
 });
 
 export const openScheduleViewer = () => ({
-    type: Types.SCHEDULE_VIEWER_VISIBLE as Types.SCHEDULE_VIEWER_VISIBLE,
+    type: Types.CHANGE_SCHEDULE_VIEWER_VISIBLE as Types.CHANGE_SCHEDULE_VIEWER_VISIBLE,
     visible: true,
 });
 
 export const closeScheduleViewer = () => ({
-    type: Types.SCHEDULE_VIEWER_VISIBLE as Types.SCHEDULE_VIEWER_VISIBLE,
+    type: Types.CHANGE_SCHEDULE_VIEWER_VISIBLE as Types.CHANGE_SCHEDULE_VIEWER_VISIBLE,
     visible: false,
 });
+
+export type ActionTypes = 
+    ReturnType<typeof switchLeftDrawerVisible> |
+    ReturnType<typeof openScheduleRegister> |
+    ReturnType<typeof closeScheduleRegister> |
+    ReturnType<typeof openScheduleViewer> |
+    ReturnType<typeof closeScheduleViewer>
 
 export default {
     switchLeftDrawerVisible,

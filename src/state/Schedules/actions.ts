@@ -20,7 +20,7 @@ export const updateSchedule = (schedule: ISchedule, date: IDate) => ({
     date: date,
 });
 
-export type ActionType = ReturnType<typeof pushSchedule> | ReturnType<typeof deleteSchedule> | ReturnType<typeof updateSchedule>;
+export type ActionTypes = ReturnType<typeof pushSchedule> | ReturnType<typeof deleteSchedule> | ReturnType<typeof updateSchedule>;
 
 export default {
     pushSchedule,
