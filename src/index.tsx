@@ -6,11 +6,10 @@ import * as serviceWorker from './serviceWorker';
 import './index.css';
 
 import App from './App';
-import Store from './Store';
-
+import store from './Store';
 
 ReactDOM.render(
-    <Provider store={Store}>
+    <Provider store={store}>
         <App />
     </Provider>
     , document.getElementById('root')

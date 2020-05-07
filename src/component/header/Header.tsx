@@ -1,6 +1,4 @@
-import React, { useCallback } from 'react';
-import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import useTheme from '@material-ui/core/styles/useTheme';
@@ -13,19 +11,14 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import PageSelectors, { SelectorMode } from 'component/header/PageSelector';
 import CalendarTitle from 'component/header/standalone/CalendarTitle';
-import { ActionTypes } from 'modules/Module';
-import { IUrlParams } from 'modules/interface/ICalendar';
+import { ContainerProps } from 'containers/HeaderContainer';
 
-interface OwnProps {
-}
-
-type Props = OwnProps;
+type Props = ContainerProps;
 
 const useStyle = makeStyles((theme) => ({
     appBarStyle: {
         height: '64px',
         zIndex: theme.zIndex.drawer + 1
-
     },
     divStyle: {
         display: "flex",
@@ -40,26 +33,16 @@ const useStyle = makeStyles((theme) => ({
     }
 }));
 
-const Header: React.FC<Props> = () => {
-    const params = useParams<IUrlParams>();
+const Header: React.FC<Props> = (props) => {
+    const {year, month, day, leftDrawerVisible, switchLeftDrawerVisible} = props;
 
     const theme = useTheme();
     const classes = useStyle(theme);
 
-    const dispatch = useDispatch();
-    const changeViewingAction = useCallback(
-        () => dispatch({type: ActionTypes.CHANGEVIEWINGLEFTMENU}),
-        [dispatch]
-    );
-
-    const year = parseInt(params.year);
-    const month = parseInt(params.month);
-    const day = parseInt(params.day);
-
     return(
         <AppBar className={classes.appBarStyle}>
             <ToolBar>
-                <IconButton onClick={changeViewingAction}>
+                <IconButton onClick={() => switchLeftDrawerVisible(leftDrawerVisible)}>
                     <MenuIcon/>
                 </IconButton>
                 <CalendarTitle />

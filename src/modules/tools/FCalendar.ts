@@ -1,9 +1,9 @@
-import { ICalendarDays, TDaySchedule, IDaySchedule } from 'modules/interface/ICalendar';
+import { IDate, TDaySchedule, IDateInfo } from 'modules/interface/ICalendar';
 
 class MonthData {
     readonly firstDayIndex: number;
     readonly firstDayWeekDay: number;
-    readonly monthDates: ICalendarDays[];
+    readonly monthDates: IDate[];
     readonly lastDay: number;
 
     constructor(year: number, month: number) {
@@ -35,10 +35,10 @@ class MonthData {
     makeCalendar() {
         const d = 35 - (this.firstDayWeekDay + this.lastDay);
         const weekNumber = d > 6 ? 4 : d > -1 ? 5 : 6;
-        let calendar: ICalendarDays[][] = Array(weekNumber);
+        let calendar: IDate[][] = Array(weekNumber);
         const startindex = (this.firstDayIndex - this.firstDayWeekDay);
         for (let i = 0; i < calendar.length; i++) {
-            let week: ICalendarDays[] = Array(7);
+            let week: IDate[] = Array(7);
             for (let k = 0; k < week.length; k++) {
                 const index = i * 7 + k + startindex;
                 week[k] = this.monthDates[index];
@@ -63,23 +63,31 @@ export const getToday = () => {
     return "/" + year + "/" + month + "/" + day;
 }
 
-export const adjustSchedules = (s: IDaySchedule[]): TDaySchedule => {
+export const adjustDateInfos = (dateInfos: IDateInfo[]): TDaySchedule => {
     let res: TDaySchedule = {};
-    for (let i = 0; i < s.length; i++) {
-        const schedule = s[i];
-        res[schedule.daysId] = schedule;
+    for (let i = 0; i < dateInfos.length; i++) {
+        const dateInfo = dateInfos[i];
+        const daysId = createDaysID({year: dateInfo.year, month: dateInfo.month, day: dateInfo.day});
+        res[daysId] = dateInfo;
     }
     return res;
 }
 
-export const createDaysID = (y: number, m: number, d: number) => {
-    return (y * 13 + m) * 32 + d;
+// 日付をもとに一意の数値を作成する(日付を探す際のキーとなる)
+export const createDaysID = (date: IDate) => {
+    return (date.year * 13 + date.month) * 32 + date.day;
 }
 
+// 日付から作成した一意の通知を日付に変換する
 export const restoreDaysID = (daysID: number) => {
     const d = daysID % 32;
     const a = (daysID - d) / 32;
     const m = a % 13;
     const y = (a - m) / 13;
     return [y, m, d];
+}
+
+export const parseValue = (s: string, d: number) => {
+    const n = parseInt(s);
+    return isNaN(n) ? d : n;
 }

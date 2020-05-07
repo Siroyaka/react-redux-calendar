@@ -9,14 +9,14 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import Box from '@material-ui/core/Box';
 import makeStyle from '@material-ui/core/styles/makeStyles';
 
-import { ICalendarDays, ISchedule } from 'modules/interface/ICalendar';
+import { IDate, ISchedule } from 'modules/interface/ICalendar';
 
 interface OwnProps {
-    dates: ICalendarDays,
+    date: IDate,
     isDisables: boolean,
-    getSchedule: (date: ICalendarDays) => ISchedule[] | null,
-    onClickCalendar: (date: ICalendarDays) => void,
-    onClickSchedule: (schedule: ISchedule, index: number) => void,
+    schedules: ISchedule[] | null,
+    onClick: (date: IDate) => void,
+    onClickSchedule: (date: IDate, schedule: ISchedule) => void,
 }
 
 type Props = OwnProps;
@@ -42,19 +42,17 @@ const useStyles = makeStyle(() => ({
 }));
 
 const MonthDayParts: React.FC<Props> = (props: Props) => {
-    const { dates, isDisables, onClickCalendar, onClickSchedule, getSchedule } = props;
+    const { date, isDisables, onClick, onClickSchedule, schedules } = props;
     const classes = useStyles();
-    const registerSchedule = useCallback(() => (onClickCalendar(dates)), [onClickCalendar, dates]);
-    const schedule = getSchedule(dates);
     const showSchedule = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>, s: ISchedule, index: number) => {
         e.stopPropagation();
-        onClickSchedule(s, index)
-    }, [onClickSchedule]);
+        onClickSchedule(date, s)
+    }, [onClickSchedule, date]);
     const cards = () => {
-        if (schedule === null) {return null;}
+        if (schedules === null) {return null;}
         return(
             <Box display='flex' alignItems='center' flexDirection='column' overflow='hidden' minWidth='0' minHeight='0' >
-                {schedule.map((val, i) => (
+                {schedules.map((val, i) => (
                     <Card className={classes.scheduleCard} onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => showSchedule(e, val, i)}>
                         <CardActionArea>
                             <Box width='95%' paddingLeft='2%' overflow='hidden' whiteSpace='nowrap' textOverflow='...'>
@@ -68,12 +66,12 @@ const MonthDayParts: React.FC<Props> = (props: Props) => {
     }
 
     return(
-        <Paper className={classes.paper} square variant='outlined' onClick={() => registerSchedule()}>
+        <Paper className={classes.paper} square variant='outlined' onClick={() => onClick(date)}>
             <TypoGraphy 
                 className={clsx(classes.typo, {[classes.disablesTypo]:isDisables})}
                 align='center'
             >
-                {dates.day}
+                {date.day}
             </TypoGraphy>
             {cards()}
         </Paper>

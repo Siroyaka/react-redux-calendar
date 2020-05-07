@@ -7,11 +7,11 @@ import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
-import { ICalendarDays } from 'modules/interface/ICalendar';
+import { IDate } from 'modules/interface/ICalendar';
 
 interface OwnProps {
     mainMonth: number,
-    date: ICalendarDays
+    date: IDate
 }
 
 type Props = OwnProps;

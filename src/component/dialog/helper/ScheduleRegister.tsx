@@ -14,13 +14,13 @@ import NotesIcon from '@material-ui/icons/Notes';
 
 import IconTextField from 'component/dialog/helper/IconTextField';
 
-import { ISchedule, ICalendarDays } from 'modules/interface/ICalendar';
+import { IScheduleWithoutId, IDate } from 'modules/interface/ICalendar';
+import { State } from 'state/ScheduleRegister/reducers';
 
 interface OwnProps {
-    open: boolean,
-    dateValue: ICalendarDays,
+    state: State,
     onClose: () => void,
-    pushSchedule: (s: ISchedule) => void
+    pushSchedule: (s: IScheduleWithoutId, d: IDate) => void
 }
 
 type Props = OwnProps;
@@ -36,36 +36,38 @@ const useStyles = makeStyle({
     }
 });
 
-const dateToView = (d?: ICalendarDays): string => {
+const dateToView = (d?: IDate): string => {
     if (d === null || d === undefined) {return "";}
     const value = d.year + '年' + d.month + '月' + d.day + '日';
     return value;
 }
 
 const ScheduleRegister: React.FC<Props> = (props) => {
-    const {open, onClose, dateValue, pushSchedule} = props;
+    const { state, onClose, pushSchedule } = props;
+    const { visible, date } = state;
     const [title, setTitle] = React.useState("");
     const [place, setPlace] = React.useState("");
     const [memo, setMemo] = React.useState("");
     // const [date, setDate] = React.useState(dateValue);
-    const d = dateToView(dateValue);
+    const d = dateToView(date);
     const save = React.useCallback(() => {
         if (title === "") {return;}
-        if (dateValue === undefined) {return;}
+        if (date === undefined) {
+            onClose();
+            return;
+        }
         pushSchedule({
             title: title,
             place: place,
             memo: memo,
-            year: dateValue.year,
-            month: dateValue.month,
-            day: dateValue.day,
             time: "00:00:00"
-        });
-    }, [dateValue, title, place, memo, pushSchedule]);
+        }, date);
+        onClose();
+    }, [date, title, place, memo, pushSchedule, onClose]);
 
     const classes = useStyles();
     return(
-        <Dialog onClose={onClose} open={open}>
+        <Dialog onClose={onClose} open={visible}>
             <Box margin='16px 0' display='flex' flexDirection='column'>
                 <Box margin='0 16px' paddingTop='15px' paddingLeft='30px'>
                     <TextField onChange={((t) => setTitle(t.target.value))} placeholder="タイトルを追加" size='medium' InputProps={{classes: {input: classes.titleFonts}}} />

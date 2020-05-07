@@ -1,19 +1,58 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import clsx from 'clsx';
+
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 import MonthCalender from 'component/month/Calendar';
-import { IUrlParams } from 'modules/interface/ICalendar';
 import { ContainerProps } from 'containers/RightContainer';
+import { DRAWER_WIDTH } from 'state/Constant';
 
 type Props = ContainerProps;
 
+const useStyles = makeStyles((theme) => ({
+    bodyStyle: {
+        height: '100%',
+        paddingTop: '70px',
+        boxSizing: 'border-box',
+        display: 'flex'
+    },
+    drawerStyle: {
+        width: `${DRAWER_WIDTH}px`,
+        flexShrink: 1
+    },
+    paper: {
+        width: `${DRAWER_WIDTH}px`,
+        paddingTop: '70px',
+        boxSizing: 'border-box'
+    },
+    rightStyle: {
+        marginLeft: -DRAWER_WIDTH,
+        paddingLeft: '5px',
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.easeIn,
+            duration: theme.transitions.duration.leavingScreen
+        }),
+        flex: '1 1 0%'
+    },
+    rightStyleShift: {
+        marginLeft: 0,
+        paddingLeft: '5px',
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen
+        }),
+    }
+}));
+
 const RightPage = (props: Props) => {
-    const {year, month} = useParams<IUrlParams>();
-    const urlMonth = parseInt(month);
-    const urlYear = parseInt(year);
-    const { allSchedules, pushSchedule } = props;
+    const theme = useTheme();
+    const classes = useStyles(theme);
+    const { leftDrawerVisible } = props;
     return (
-        <MonthCalender year={urlYear} month={urlMonth} allSchedules={allSchedules} pushSchedule={pushSchedule} />
+        <div className={clsx(classes.rightStyle, {[classes.rightStyleShift]: leftDrawerVisible})}>
+            <MonthCalender {...props} />
+        </div>
     );
 }
 

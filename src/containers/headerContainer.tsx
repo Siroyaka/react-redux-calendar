@@ -3,20 +3,15 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import RightPage from 'component/page/RightPage';
+import Header from 'component/header/Header';
+import leftDrawerOperations from 'state/LeftDrawer/operations';
 import { StoreState } from 'Store';
-import scheduleOperations from 'state/Schedules/operations';
-import scheduleRegisterOperations from 'state/ScheduleRegister/operations';
-import scheduleViewerOperations from 'state/ScheduleViewer/operations';
 import { IUrlParams } from 'modules/interface/ICalendar';
 import { parseValue } from 'modules/tools/FCalendar';
 
 const mapStateToProps = (state: StoreState) => {
     return {
-        stateSchedules: state.scheduleReducer,
-        scheduleRegisterState: state.scheduleRegisterReducer,
-        scheduleViewerState: state.scheduleViewerReducer,
-        leftDrawerVisible: state.leftDrawerReducer.visible,
+        leftDrawerVisible: state.leftDrawerReducer.visible
     };
 }
 
@@ -28,13 +23,9 @@ const addParamsToState = (up: IUrlParams, state: ReturnType<typeof mapStateToPro
 } 
 
 const mapDispatchToProps = (dispatch:Dispatch<any>) => {
-    const scheduleActions = bindActionCreators(scheduleOperations, dispatch);
-    const scheduleRegisterActions = bindActionCreators(scheduleRegisterOperations, dispatch);
-    const scheduleViewerActions = bindActionCreators(scheduleViewerOperations, dispatch);
+    const switchLeftDrawerVisible = bindActionCreators(leftDrawerOperations.switchLeftDrawerVisible, dispatch);
     return {
-        ...scheduleActions,
-        ...scheduleRegisterActions,
-        ...scheduleViewerActions,
+        switchLeftDrawerVisible
     };
 }
 
@@ -49,7 +40,7 @@ const Container: React.FC = () => {
     const dispatch = useDispatch();
     const containerProps:ContainerProps = {...stateAddParams, ...mapDispatchToProps(dispatch)};
     return(
-        <RightPage {...containerProps} />
+        <Header {...containerProps} />
     );
 }
 
