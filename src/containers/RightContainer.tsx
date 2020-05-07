@@ -1,19 +1,15 @@
 import React from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
-import { useSelector, useDispatch, MapStateToProps } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import CalendarForm from 'component/page/RightPage';
+import RightPage from 'component/page/RightPage';
 import { StoreState } from 'Store';
 import scheduleOperations from 'state/Schedules/operations';
 import scheduleRegisterOperations from 'state/ScheduleRegister/operations';
 import scheduleViewerOperations from 'state/ScheduleViewer/operations';
 import { IUrlParams } from 'modules/interface/ICalendar';
-
-const parseValue = (s: string, d: number) => {
-    const n = parseInt(s);
-    return isNaN(n) ? d : n;
-}
+import { parseValue } from 'modules/tools/FCalendar';
 
 const mapStateToProps = (state: StoreState) => {
     return {
@@ -25,9 +21,9 @@ const mapStateToProps = (state: StoreState) => {
 }
 
 const addParamsToState = (up: IUrlParams, state: ReturnType<typeof mapStateToProps>) => {
-    const year = parseValue(up.uYear, 1990);
-    const month = parseValue(up.uMonth, 1);
-    const day = parseValue(up.uDay, 1);
+    const year = parseValue(up.year, 1990);
+    const month = parseValue(up.month, 1);
+    const day = parseValue(up.day, 1);
     return({...state, year: year, month: month, day: day});
 } 
 
@@ -53,7 +49,7 @@ const Container: React.FC = () => {
     const dispatch = useDispatch();
     const containerProps:ContainerProps = {...stateAddParams, ...mapDispatchToProps(dispatch)};
     return(
-        <CalendarForm {...containerProps} />
+        <RightPage {...containerProps} />
     );
 }
 

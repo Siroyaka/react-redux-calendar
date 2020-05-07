@@ -47,7 +47,7 @@ const MonthDayParts: React.FC<Props> = (props: Props) => {
     const showSchedule = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>, s: ISchedule, index: number) => {
         e.stopPropagation();
         onClickSchedule(date, s)
-    }, [onClickSchedule]);
+    }, [onClickSchedule, date]);
     const cards = () => {
         if (schedules === null) {return null;}
         return(

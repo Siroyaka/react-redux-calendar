@@ -5,9 +5,9 @@ export interface IDate {
 }
 
 export interface IUrlParams {
-    uYear: string,
-    uMonth: string,
-    uDay: string,
+    year: string,
+    month: string,
+    day: string,
 }
 
 export type TDaySchedule = { [key: string]: IDateInfo };

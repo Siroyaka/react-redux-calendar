@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MiniCalendar : React.FC<Props> = (props) => {
-    const {year, month, day} = props;
+    const {year, month} = props;
     const [nowMonth, setNowMonth] = React.useState(month);
     const [nowYear, setNowYear] = React.useState(year);
     const [calendar, setCalendar] = React.useState(getMonthCalendar(nowYear, nowMonth));

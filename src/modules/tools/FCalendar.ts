@@ -86,3 +86,8 @@ export const restoreDaysID = (daysID: number) => {
     const y = (a - m) / 13;
     return [y, m, d];
 }
+
+export const parseValue = (s: string, d: number) => {
+    const n = parseInt(s);
+    return isNaN(n) ? d : n;
+}

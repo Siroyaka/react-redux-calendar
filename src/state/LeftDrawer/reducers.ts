@@ -16,7 +16,7 @@ const initialState: State = ({
 const reducer: Reducer<State, ActionTypes> = (state = initialState, action) => {
     switch(action.type) {
         case Types.SWITCH_LEFT_DRAWER_VISIBLE: {
-            return{...state, leftDrawerVisible: !action.visible};
+            return{...state, visible: !action.visible};
         }
         default: {
             return state;

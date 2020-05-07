@@ -1,4 +1,4 @@
-import { combineReducers, Reducer } from 'redux';
+import { Reducer } from 'redux';
 import types from './types';
 import { GetInitialDaySchedules } from 'modules/tools/FInitialContents';
 import { adjustDateInfos, createDaysID } from 'modules/tools/FCalendar';
@@ -44,7 +44,7 @@ const scheduleReducer: Reducer<State, ActionTypes> = (state = initialState, acti
             let dateInfos = { ...state };
             if (daysId in dateInfos) {
                 let s = dateInfos[daysId].schedules;
-                dateInfos[daysId].schedules = s.filter(x => x.id != action.schedule.id);
+                dateInfos[daysId].schedules = s.filter(x => x.id !== action.schedule.id);
             }
             return dateInfos;
         }
@@ -54,10 +54,9 @@ const scheduleReducer: Reducer<State, ActionTypes> = (state = initialState, acti
             let daysId = createDaysID(date);
             let dateInfos = { ...state };
             if (daysId in dateInfos) {
-                if (dateInfos[daysId].schedules.some(x => x.id == action.schedule.id)) {
-                    dateInfos[daysId]
-                    .schedules
-                    .filter(x => x.id == action.schedule.id)[0] = action.schedule;
+                if (dateInfos[daysId].schedules.some(x => x.id === action.schedule.id)) {
+                    const index = dateInfos[daysId].schedules.findIndex(x => x.id === action.schedule.id);
+                    dateInfos[daysId].schedules[index] = action.schedule;
                 }
             }
             return dateInfos;
@@ -66,7 +65,5 @@ const scheduleReducer: Reducer<State, ActionTypes> = (state = initialState, acti
             return state;
     }
 }
-
-const reducer = combineReducers(scheduleReducer);
 
 export default scheduleReducer;
