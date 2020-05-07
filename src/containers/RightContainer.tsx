@@ -5,7 +5,9 @@ import { useParams } from 'react-router-dom';
 
 import CalendarForm from 'component/page/RightPage';
 import { StoreState } from 'Store';
-import operations from 'state/Schedules/operations';
+import scheduleOperations from 'state/Schedules/operations';
+import scheduleRegisterOperations from 'state/ScheduleRegister/operations';
+import scheduleViewerOperations from 'state/ScheduleViewer/operations';
 import { IUrlParams } from 'modules/interface/ICalendar';
 
 const parseValue = (s: string, d: number) => {
@@ -15,8 +17,10 @@ const parseValue = (s: string, d: number) => {
 
 const mapStateToProps = (state: StoreState) => {
     return {
-        state: state.scheduleReducer,
-        leftDrawerVisible: state.formControlerReducer.leftDrawerVisible
+        stateSchedules: state.scheduleReducer,
+        scheduleRegisterState: state.scheduleRegisterReducer,
+        scheduleViewerState: state.scheduleViewerReducer,
+        leftDrawerVisible: state.leftDrawerReducer.visible,
     };
 }
 
@@ -28,7 +32,14 @@ const addParamsToState = (up: IUrlParams, state: ReturnType<typeof mapStateToPro
 } 
 
 const mapDispatchToProps = (dispatch:Dispatch<any>) => {
-    return bindActionCreators(operations, dispatch);
+    const scheduleActions = bindActionCreators(scheduleOperations, dispatch);
+    const scheduleRegisterActions = bindActionCreators(scheduleRegisterOperations, dispatch);
+    const scheduleViewerActions = bindActionCreators(scheduleViewerOperations, dispatch);
+    return {
+        ...scheduleActions,
+        ...scheduleRegisterActions,
+        ...scheduleViewerActions,
+    };
 }
 
 export type ContainerProps =

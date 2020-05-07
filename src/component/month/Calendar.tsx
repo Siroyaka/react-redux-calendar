@@ -22,39 +22,29 @@ const useStyles = makeStyles({
 type Props = ContainerProps;
 
 const MonthCalender: React.FC<Props> = (props) => {
-    const { year, month, state, pushSchedule, deleteSchedule, updateSchedule } = props;
+    const {
+        year,
+        month,
+        stateSchedules,
+        pushSchedule,
+        deleteSchedule,
+        updateSchedule,
+        scheduleRegisterState,
+        scheduleViewerState,
+        openScheduleRegister,
+        closeScheduleRegister,
+        openScheduleViewer,
+        closeScheduleViewer,
+    } = props;
     const classes = useStyles();
-
-    const [registersOpen, setRegistersOpen] = React.useState(false);
-    const [scheduleViewOpen, setScheduleViewOpen] = React.useState(false);
-    const [dateValue, setDateValue] = React.useState<IDate>({day: 0, month: 0, year: 0});
-    const [chooseSchedule, setChooseSchedule] = React.useState<ISchedule>({id: -1, title: "", time: "00:00"});
-
     const monthCalendar = getMonthCalendar(year, month);
-
-    const onClick = useCallback((dayValue: IDate) => {
-        setDateValue(dayValue);
-        setRegistersOpen(true);
-    }, []);
-    const onCloseRegister = useCallback(() => {
-        setRegistersOpen(false);
-    }, []);
-    const onCloseViewer = useCallback(() => {
-        setScheduleViewOpen(false);
-    }, []);
-
-    const openScheduleView = React.useCallback((s: ISchedule, d: IDate) => {
-        setDateValue(d);
-        setChooseSchedule(s);
-        setScheduleViewOpen(true);
-    }, [])
 
     return (
         <div className={classes.calendarStyle}>
             <MonthWeekDayParts />
-            <WeeklyCalendar month={month} weeklyCalendar={monthCalendar} schedules={state} onClick={onClick} onClickSchedule={openScheduleView} />
-            <ScheduleRegister open={registersOpen} onClose={onCloseRegister} dateValue={dateValue} pushSchedule={pushSchedule} />
-            <ShowScheduleDialog open={scheduleViewOpen} onClose={onCloseViewer} date={dateValue} schedule={chooseSchedule} deleteSchedule={deleteSchedule} updateSchedule={updateSchedule}/>
+            <WeeklyCalendar month={month} weeklyCalendar={monthCalendar} schedules={stateSchedules} onClick={openScheduleRegister} onClickSchedule={openScheduleViewer} />
+            <ScheduleRegister state={scheduleRegisterState} onClose={closeScheduleRegister} pushSchedule={pushSchedule} />
+            <ShowScheduleDialog state={scheduleViewerState} onClose={closeScheduleViewer} deleteSchedule={deleteSchedule} updateSchedule={updateSchedule}/>
         </div>
     );
 }

@@ -2,17 +2,17 @@ import { State } from './reducers';
 import { IDate } from 'modules/interface/ICalendar';
 import { createDaysID } from 'modules/tools/FCalendar';
 
-const getDateInfo = (state: State, date: IDate) => {
+export const getSchedules = (state: State, date: IDate) => {
     const daysId = createDaysID(date);
-    return state[daysId];
+    return daysId in state ? state[daysId].schedules.length > 0 ? state[daysId].schedules : null : null;
 }
 
-const hasDateInfo = (state: State, date: IDate) => {
+export const hasDateInfo = (state: State, date: IDate) => {
     const daysId = createDaysID(date);
     return daysId in state;
 }
 
 export default {
-    getDateInfo,
+    getSchedules,
     hasDateInfo,
 }

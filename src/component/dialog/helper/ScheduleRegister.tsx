@@ -15,10 +15,10 @@ import NotesIcon from '@material-ui/icons/Notes';
 import IconTextField from 'component/dialog/helper/IconTextField';
 
 import { IScheduleWithoutId, IDate } from 'modules/interface/ICalendar';
+import { State } from 'state/ScheduleRegister/reducers';
 
 interface OwnProps {
-    open: boolean,
-    dateValue: IDate,
+    state: State,
     onClose: () => void,
     pushSchedule: (s: IScheduleWithoutId, d: IDate) => void
 }
@@ -43,15 +43,16 @@ const dateToView = (d?: IDate): string => {
 }
 
 const ScheduleRegister: React.FC<Props> = (props) => {
-    const {open, onClose, dateValue, pushSchedule} = props;
+    const { state, onClose, pushSchedule } = props;
+    const { visible, date } = state;
     const [title, setTitle] = React.useState("");
     const [place, setPlace] = React.useState("");
     const [memo, setMemo] = React.useState("");
     // const [date, setDate] = React.useState(dateValue);
-    const d = dateToView(dateValue);
+    const d = dateToView(date);
     const save = React.useCallback(() => {
         if (title === "") {return;}
-        if (dateValue === undefined) {
+        if (date === undefined) {
             onClose();
             return;
         }
@@ -60,13 +61,13 @@ const ScheduleRegister: React.FC<Props> = (props) => {
             place: place,
             memo: memo,
             time: "00:00:00"
-        }, dateValue);
+        }, date);
         onClose();
-    }, [dateValue, title, place, memo, pushSchedule, onClose]);
+    }, [date, title, place, memo, pushSchedule, onClose]);
 
     const classes = useStyles();
     return(
-        <Dialog onClose={onClose} open={open}>
+        <Dialog onClose={onClose} open={visible}>
             <Box margin='16px 0' display='flex' flexDirection='column'>
                 <Box margin='0 16px' paddingTop='15px' paddingLeft='30px'>
                     <TextField onChange={((t) => setTitle(t.target.value))} placeholder="タイトルを追加" size='medium' InputProps={{classes: {input: classes.titleFonts}}} />

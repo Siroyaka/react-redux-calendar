@@ -1,10 +1,14 @@
 import { Store, createStore, combineReducers } from 'redux';
 import scheduleReducer from 'state/Schedules';
-import formControlerReducer from 'state/FormControler';
+import leftDrawerReducer from 'state/LeftDrawer';
+import scheduleRegisterReducer from 'state/ScheduleRegister';
+import scheduleViewerReducer from 'state/ScheduleViewer';
 
 const reducers = combineReducers({
     scheduleReducer,
-    formControlerReducer
+    leftDrawerReducer,
+    scheduleRegisterReducer,
+    scheduleViewerReducer,
 });
 
 export type StoreState = 
